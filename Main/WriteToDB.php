@@ -23,7 +23,7 @@ $password = $_POST['userpassword'];
 $query = "INSERT INTO users(id,username)VALUES('$user','$password')";
 
 if(mysql_query($query)){
-echo "inserted";}
+echo "-";}
 else{
 echo "fail";}
 
