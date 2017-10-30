@@ -1,12 +1,4 @@
-<?php
-//including the database connection file
-include_once("config.php");
- 
-//fetching data in descending order (lastest entry first)
-//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // using mysqli_query instead
-?>
- 
+
 
 
 <!doctype html>
@@ -137,31 +129,38 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                
+                                 <h4 class="title">Add Customer</h4>
+                                <p class="category">Enter the details below to add a new customer</p>
                                
- <a href="add.html">Add New Customer</a><br/><br/>
+    <br/><br/>
  
-   <table width='100%' border=0>
-        <tr bgcolor='white'>
-            <strong><td>Name</td></strong>
-           <strong> <td>Contact</td></strong>
-            <strong><td>Tasks</td></strong>
-            <strong><td>Paid</td></strong>
-            <strong><td>Update</td></strong>
-        </tr>
-        <?php 
-     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
-       while($res = mysqli_fetch_array($result)) {         
-            echo "<tr>";
-            echo "<td>".$res['CustName']."</td>";
-            echo "<td>".$res['CustContact']."</td>";
-            echo "<td>".$res['TaskNum']."</td>";  
-            echo "<td>".$res['Paid']."</td>";  
-            echo "<td><button><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button><a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></button></td>";        
-        }
-        ?>
-    </table>
+    <form action="CustomerList.php" method="post" name="form1">
+        <table width="100%" border="0">
+            <tr> 
+                <td>Name</td>
+                <td><input type="text" name="CustName"></td>
+            </tr>
+            <tr> 
+                <td>Contact</td>
+                <td><input type="text" name="CustContact"></td>
+            </tr>
+            <tr> 
+                <td>Task</td>
+                <td><input type="text" name="TaskNum"></td>
+            </tr>
+            <tr> 
+                <td>Paid</td>
+                <td><input type="text" name="Paid"></td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td><input type="submit" name="Submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+
+
 
                             </div>
                             

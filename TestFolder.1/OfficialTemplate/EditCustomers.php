@@ -18,22 +18,22 @@ if(isset($_POST['update']))
         }
         
         if(empty($CustContact)) {
-            echo "<font color='red'>Age field is empty.</font><br/>";
+            echo "<font color='red'>Contact field is empty.</font><br/>";
         }
         
         if(empty($TaskNum)) {
-            echo "<font color='red'>Email field is empty.</font><br/>";
+            echo "<font color='red'>Task field is empty.</font><br/>";
         }    
         
          if(empty($Paid)) {
-            echo "<font color='red'>Email field is empty.</font><br/>";
+            echo "<font color='red'>Paid field is empty.</font><br/>";
         }    
     } else {    
         //updating the table
         $result = mysqli_query($mysqli, "UPDATE Customers SET CustName='$CustName',CustContact='$CustContact',TaskNum='$TaskNum',Paid='$Paid' WHERE id=$id");
         
         //redirectig to the display page. In our case, it is index.php
-        header("Location: index.php");
+        header("Location: CustomerList.php");
     }
 }
 ?>
@@ -191,10 +191,10 @@ while($res = mysqli_fetch_array($result))
                                 <p class="category">Here is a list of your current customers</p>
                                
 
- <a href="index.php">Home</a>
+ 
     <br/><br/>
     
-    <form name="form1" method="post" action="edit.php">
+    <form name="form1" method="post" action="EditCustomers.php">
         <table border="0">
             <tr> 
                 <td>Name</td>

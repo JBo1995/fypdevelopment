@@ -1,3 +1,57 @@
+<?php
+//including the database connection file
+include_once("config.php");
+ 
+if(isset($_POST['Submit'])) {    
+    $CustName = $_POST['CustName'];
+    $CustContact = $_POST['CustContact'];
+    $TaskNum = $_POST['TaskNum'];
+    $Paid = $_POST['Paid'];
+        
+    // checking empty fields
+    if(empty($CustName) || empty($CustContact) || empty($TaskNum) || empty($Paid)) {                
+        if(empty($CustName)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
+        
+        if(empty($CustContact)) {
+            echo "<font color='red'>Age field is empty.</font><br/>";
+        }
+        
+        if(empty($TaskNum)) {
+            echo "<font color='red'>Email field is empty.</font><br/>";
+        }
+        
+         if(empty($Paid)) {
+            echo "<font color='red'>Email field is empty.</font><br/>";
+        }
+        
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Customers(CustName,CustContact,TaskNum,Paid) VALUES('$CustName','$CustContact','$TaskNum','$Paid')");
+        
+        
+    }
+}
+?>
+
+
+
+
+<?php
+//including the database connection file
+include_once("config.php");
+ 
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // using mysqli_query instead
+?>
+ 
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -129,84 +183,30 @@
                                 <h4 class="title">Customer List</h4>
                                 <p class="category">Here is a list of your current customers</p>
                                
-<?php
-// with help from https://www.w3schools.com/PhP/showphpfile.asp?filename=demo_db_select_oo_table
-$host = "127.0.0.1";
-    $user = "jboyle";                    
-    $pass = "";                                  
-    $db = "customersdb";                                
-    $port = 3306;   
-
-// Create connection
-$conn = new mysqli($host, $user, $pass, $db);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-
-
-$sql = "SELECT id, CustName FROM CustomerList";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table class='table table-hover'><tr><th>ID</th><th>Name</th></tr>";
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["CustName"]. "</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
-
-$conn->close();
-?> 
-
-<br><br><br>
-<h4 class="title">Add a Customer</h4><br>
-<form method="post" name="input" action="CustomerList.php" >
-ID:<br/>
-<input name="user" type="text"/><br/>
-Customer Name:<br/>
-<input name="userpassword" type="text"/><br/>
-Customer Contact:<br/>
-<input name="userpassword" type="text"/><br/>
-Number of Tasks:<br/>
-<input name="userpassword" type="text"/><br/>
-Has the Customer paid:<br/>
-<input name="userpassword" type="text"/><br/>
-<input type="submit" name="Submit" value="Add" />
-</form>
+ <a href="AddCustomer.php">Add New Customer</a><br/><br/>
  
- <?php
-// with help from http://www.phpsuperblog.com/php/insert-values-into-mysql-database-with-html-form-and-php/?user=&userpassword=&Submit=insert
-
-mysql_connect("127.0.0.1", "jboyle", "") or die("Connection Failed");
-mysql_select_db("customersdb")or die("Connection Failed");
-
-
-
-$user = $_POST['user'];
-$password = $_POST['userpassword'];
-
-$query = "INSERT INTO CustomerList(id,CustName)VALUES('$user','$password')";
-
-if(mysql_query($query)){
-echo "-";}
-else{
-echo "fail";}
-
-
- ?> 
+   <table width='100%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Name</td></strong>
+           <strong> <td>Contact</td></strong>
+            <strong><td>Tasks</td></strong>
+            <strong><td>Paid</td></strong>
+            <strong><td>Update</td></strong>
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['CustName']."</td>";
+            echo "<td>".$res['CustContact']."</td>";
+            echo "<td>".$res['TaskNum']."</td>";  
+            echo "<td>".$res['Paid']."</td>";  
+            echo "<td><button><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+        }
+        ?>
+    </table>
 
                             </div>
-                            
-                            
-                 
-                            
-                            
-                            
                             
                         </div>
                     </div>
