@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -137,14 +139,29 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Customers</p>
-                                            0
+                                            
+                                        
+                                            <?php
+// with help from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM Customers", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+
+?>
+
+                                          
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Update
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +229,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Followers</p>
-                                            +45
+                                            0
                                         </div>
                                     </div>
                                 </div>
@@ -345,7 +362,7 @@
         	demo.initChartist();
 
         	$.notify({
-            	icon: 'ti-gift',
+            	
             	message: "Welcome to <b>DevLink</b> <br>A CRM built for developers"
 
             },{
