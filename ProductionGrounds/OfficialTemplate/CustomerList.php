@@ -2,9 +2,52 @@
 //including the database connection file
 include_once("config.php");
  
+if(isset($_POST['Submit'])) {    
+    $CustName = $_POST['CustName'];
+    $CustContact = $_POST['CustContact'];
+    $TaskNum = $_POST['TaskNum'];
+    $Paid = $_POST['Paid'];
+        
+    // checking empty fields
+    if(empty($CustName) || empty($CustContact) || empty($TaskNum) || empty($Paid)) {                
+        if(empty($CustName)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
+        
+        if(empty($CustContact)) {
+            echo "<font color='red'>Age field is empty.</font><br/>";
+        }
+        
+        if(empty($TaskNum)) {
+            echo "<font color='red'>Email field is empty.</font><br/>";
+        }
+        
+         if(empty($Paid)) {
+            echo "<font color='red'>Email field is empty.</font><br/>";
+        }
+        
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Customers(CustName,CustContact,TaskNum,Paid) VALUES('$CustName','$CustContact','$TaskNum','$Paid')");
+        
+        
+    }
+}
+?>
+
+
+
+
+<?php
+//including the database connection file
+include_once("config.php");
+ 
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // using mysqli_query instead
 ?>
  
 
@@ -60,19 +103,19 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC"); // usin
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
                         <p>Developer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="CustomerList.php">
                         <i class="ti-user"></i>
                         <p>Customer Control</p>
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php.html">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
@@ -140,23 +183,25 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC"); // usin
                                 <h4 class="title">Customer List</h4>
                                 <p class="category">Here is a list of your current customers</p>
                                
- <a href="add.html">Add New Data</a><br/><br/>
+ <a href="AddCustomer.php">Add New Customer</a><br/><br/>
  
-    <table width='80%' border=0>
-        <tr bgcolor='#CCCCCC'>
-            <td>Name</td>
-            <td>Age</td>
-            <td>Email</td>
-            <td>Update</td>
+   <table width='100%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Name</td></strong>
+           <strong> <td>Contact</td></strong>
+            <strong><td>Tasks</td></strong>
+            <strong><td>Paid</td></strong>
+            <strong><td>Update</td></strong>
         </tr>
         <?php 
-        //while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
-        while($res = mysqli_fetch_array($result)) {         
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
             echo "<tr>";
-            echo "<td>".$res['name']."</td>";
-            echo "<td>".$res['age']."</td>";
-            echo "<td>".$res['email']."</td>";    
-            echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";        
+            echo "<td>".$res['CustName']."</td>";
+            echo "<td>".$res['CustContact']."</td>";
+            echo "<td>".$res['TaskNum']."</td>";  
+            echo "<td>".$res['Paid']."</td>";  
+            echo "<td><button><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
         }
         ?>
     </table>
