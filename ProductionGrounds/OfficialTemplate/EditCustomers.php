@@ -13,8 +13,6 @@ if(isset($_POST['update']))
     
     // checking empty fields
     if(empty($CustName) || empty($CustContact) || empty($TaskNum) || empty($Paid)) {            
-      
-       header("Location: Fail.html");
         if(empty($CustName)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
@@ -30,6 +28,8 @@ if(isset($_POST['update']))
          if(empty($Paid)) {
             echo "<font color='red'>Paid field is empty.</font><br/>";
         }    
+        
+         header("Location: CustomerList.php");
         
     } else {    
         //updating the table
@@ -196,7 +196,7 @@ while($res = mysqli_fetch_array($result))
 
  
     <br/><br/>
- 
+    
     <form name="form1" method="post" action="EditCustomers.php">
         <table border="0">
             <tr> 
