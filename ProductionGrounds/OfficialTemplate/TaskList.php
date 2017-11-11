@@ -37,11 +37,8 @@ include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id ASC"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY Customer ASC"); // using mysqli_query instead
 ?>
- 
- 
-
 
 <!doctype html>
 <html lang="en">
@@ -106,13 +103,13 @@ $result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id ASC"); // using 
                     </a>
                 </li>
                 <li>
-                    <a href="TaskList.php.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -199,7 +196,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id ASC"); // using 
             
              
             
-       echo "<td><button type='button' class='btn btn-primary'><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complet?')\">Mark As Complete</a></button></td>"; 
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complete?')\">Mark As Complete</a></button></td>"; 
         
      //   echo "<td><input type=checkbox>Mark As Complete<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></td>";
         

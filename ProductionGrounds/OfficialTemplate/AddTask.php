@@ -103,7 +103,7 @@ if(isset($_POST['Submit'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>

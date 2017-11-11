@@ -113,25 +113,25 @@ while($res = mysqli_fetch_array($result))
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
                         <p>Developer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="CustomerList.php">
                         <i class="ti-user"></i>
                         <p>Customer Control</p>
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -201,15 +201,15 @@ while($res = mysqli_fetch_array($result))
         <table border="0">
             <tr> 
                 <td>Name</td>
-                <td><input type="text" name="CustName" value="<?php echo $CustName;?>"></td>
+                <td><input type="text" name="CustName" maxlength="20" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
                 <td>Contact</td>
-                <td><input type="text" name="CustContact" value="<?php echo $CustContact;?>"></td>
+                <td><input type="text" name="CustContact" maxlength="10" value="<?php echo $CustContact;?>"></td>
             </tr>
             <tr> 
                 <td>Tasks</td>
-                <td><input type="text" name="TaskNum" value="<?php echo $TaskNum;?>"></td>
+                <td><input type="text" name="TaskNum" maxlength="3" value="<?php echo $TaskNum;?>"></td>
             </tr>
              <tr> 
                 <td>Paid</td>

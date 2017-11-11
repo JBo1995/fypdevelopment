@@ -53,7 +53,7 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
                         <p>Developer Panel</p>
                     </a>
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -91,7 +91,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><h6>Dashboard</h6><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -197,7 +197,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Update
+                                        <i class="ti-reload"></i> 
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +273,7 @@ mysql_select_db("customersdb", $link);
 $result = mysql_query("SELECT * FROM todocomplete", $link);
 $num_rows = mysql_num_rows($result);
 
-echo "<strong>$num_rows \n </strong> Tasks have been completed ";
+echo "<br><strong>$num_rows \n </strong> Tasks have been completed ";
 
 ?>
 
@@ -281,6 +281,11 @@ echo "<strong>$num_rows \n </strong> Tasks have been completed ";
                                 <p class="category"></p>
                             </div>
                             <div class="content">
+                                
+     
+                                
+                                
+                                
                                 <?php
 $servername = "127.0.0.1";
 $username = "jboyle";
@@ -297,6 +302,8 @@ if ($conn->connect_error) {
 $sql = "SELECT id, task, Customer FROM todocomplete";
 $result = $conn->query($sql);
 
+
+
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
@@ -306,9 +313,14 @@ if ($result->num_rows > 0) {
     echo "No tasks here";
 }
 
+
+
+
+       
 $conn->close();
 ?> 
-        
+
+
                             </div>
                         </div>
                     </div>
@@ -322,10 +334,7 @@ $conn->close();
                                 <div id="chartActivity" class="ct-chart"></div>
 
                                 <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
+                                    
                                     <hr>
                                     <div class="stats">
                                         <i class="ti-check"></i> Data information certified

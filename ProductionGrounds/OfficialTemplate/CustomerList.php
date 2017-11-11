@@ -114,13 +114,13 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // 
                     </a>
                 </li>
                 <li>
-                    <a href="TaskList.php.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
