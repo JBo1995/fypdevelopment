@@ -1,3 +1,48 @@
+
+<?php
+//including the database connection file
+include_once("config.php");
+ 
+if(isset($_POST['Submit'])) {    
+    $Task = $_POST['Task'];
+    $Customer = $_POST['Customer'];
+    
+        
+    // checking empty fields
+    if(empty($Task) || empty($Customer)) {                
+        if(empty($Task)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
+        
+        if(empty($Customer)) {
+            echo "<font color='red'>Contact field is empty.</font><br/>";
+        }
+        
+       
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer) VALUES('$Task','$Customer')");
+        
+        
+    }
+}
+?>
+
+<?php
+//including the database connection file
+include_once("config.php");
+ 
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id ASC"); // using mysqli_query instead
+?>
+ 
+ 
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,19 +94,19 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
                         <p>Developer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="CustomerList.php">
                         <i class="ti-user"></i>
                         <p>Customer Control</p>
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php.html">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
@@ -126,42 +171,49 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Task List</h4>
+                                <p class="category">Here is a list of your current tasks</p>
+                      
+
+
+
+                   
                                
-<?php
-// with help from https://www.w3schools.com/PhP/showphpfile.asp?filename=demo_db_select_oo_table
-$host = "127.0.0.1";
-    $user = "jboyle";                    
-    $pass = "";                                  
-    $db = "customersdb";                                
-    $port = 3306;   
+ <a href="AddTask.php">Add New Task</a><br/><br/>
+ 
+   <table class="table table-striped" width='50%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>ID</td></strong>
+           <strong> <td>Task</td></strong>
+            <strong><td>Customer ID</td></strong>
+            
+            
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['id']."</td>";
+            echo "<td>".$res['Task']."</td>";
+            echo "<td>".$res['Customer']."</td>";  
+            
+             
+            
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\">Mark As Complete</a></button></td>"; 
+        
+     //   echo "<td><input type=checkbox>Mark As Complete<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></td>";
+        
+            }
+        ?>
+        
+        
+  
+ 
+    </table>
+    
+    
 
-// Create connection
-$conn = new mysqli($host, $user, $pass, $db);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
 
-
-
-$sql = "SELECT id, username FROM users";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table class='table table-hover'><tr><th>ID</th><th>Name</th></tr>";
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["username"]. "</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
-
-$conn->close();
-?> 
 
                             </div>
                             

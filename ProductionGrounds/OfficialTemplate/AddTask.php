@@ -4,51 +4,33 @@
 include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
-    $CustName = $_POST['CustName'];
-    $CustContact = $_POST['CustContact'];
-    $TaskNum = $_POST['TaskNum'];
-    $Paid = $_POST['Paid'];
+    $Task = $_POST['Task'];
+    $Customer = $_POST['Customer'];
+    
         
     // checking empty fields
-    if(empty($CustName) || empty($CustContact) || empty($TaskNum) || empty($Paid)) {                
-        if(empty($CustName)) {
-            echo "<font color='red'>Name field was empty.</font><br/>";
+    if(empty($Task) || empty($Customer)) {                
+        if(empty($Task)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
         }
         
-        if(empty($CustContact)) {
-            echo "<font color='red'>Age field was empty.</font><br/>";
+        if(empty($Customer)) {
+            echo "<font color='red'>Contact field is empty.</font><br/>";
         }
         
-        if(empty($TaskNum)) {
-            echo "<font color='red'>Email field was empty.</font><br/>";
-        }
-        
-         if(empty($Paid)) {
-            echo "<font color='red'>Email field was empty.</font><br/>";
-        }
-        
+       
         //link to the previous page
-        echo "<br/><a href='javascript:self.history.back();'>No new customer added. Try Again</a>";
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Customers(CustName,CustContact,TaskNum,Paid) VALUES('$CustName','$CustContact','$TaskNum','$Paid')");
-      
+        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer) VALUES('$Task','$Customer')");
+        
         
     }
 }
 ?>
 
-<?php
-//including the database connection file
-include_once("config.php");
- 
-//fetching data in descending order (lastest entry first)
-//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // using mysqli_query instead
-?>
- 
- 
 
 
 <!doctype html>
@@ -114,7 +96,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // 
                     </a>
                 </li>
                 <li>
-                    <a href="TaskList.php.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
@@ -179,36 +161,68 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                
+                                 <h4 class="title">Add Task</h4>
+                                <p class="category">Enter the details below to add a new task</p>
                                
- <a href="AddCustomer.php">Add New Customer</a><br/><br/>
- 
-   <table class="table table-striped" width='100%' border=0>
-        <tr bgcolor='white'>
-            <strong><td>Name</td></strong>
-           <strong> <td>Contact</td></strong>
-            <strong><td>Tasks</td></strong>
-            <strong><td>Paid</td></strong>
-            <strong><td>Update</td></strong>
-        </tr>
-        <?php 
-     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
-       while($res = mysqli_fetch_array($result)) {         
-            echo "<tr>";
-            echo "<td>".$res['CustName']."</td>";
-            echo "<td>".$res['CustContact']."</td>";
-            echo "<td>".$res['TaskNum']."</td>";  
-            echo "<td>".$res['Paid']."</td>";  
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
-        }
-        ?>
-    </table>
+    <br/><br/>
+  
+
+
+    <form action="TaskList.php" method="post" name="form1">
+        
+        <table class="table table-striped" width="100%" border="0">
+            <tr> 
+                <td>Task</td>
+                <td><input type="text" name="Task"></td>
+            </tr>
+            <tr> 
+                <td>Customer</td>
+               
+                <td>
+                <?php
+// With help from http://jsfiddle.net/My7D5/ & https://www.sitepoint.com/community/t/populate-dropdown-menu-from-mysql-database/6481/7
+$conn = new mysqli('127.0.0.1', 'jboyle', '', 'customersdb') 
+or die ('Cannot connect to db');
+
+    $result = $conn->query("select id, CustName from Customers");
+    
+    echo "<html>";
+    echo "<body>";
+    echo "<select id='mydropbox' onchange='copyValue()'>";
+
+    while ($row = $result->fetch_assoc()) {
+
+                  unset($id, $CustName);
+                  $id = $row['id'];
+                  $name = $row['CustName']; 
+                  echo '<option value="'.$id.'">'.$name.'</option>';
+                 
+}
+
+    echo "</select>";
+    echo "</body>";
+    echo "</html>";
+?><input name="Customer" type="text" id="test" readonly="readonly" ></td>
+
+
+            </tr>
+            
+            <tr> 
+                <td>
+                    
+                </td>
+                <td><input type="submit" name="Submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
     
     
 
-
-
+<script>function copyValue() {
+    var dropboxvalue = document.getElementById('mydropbox').value;
+    document.getElementById('test').value = dropboxvalue;
+}</script>
                             </div>
                             
                         </div>

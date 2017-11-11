@@ -16,15 +16,15 @@ if(isset($_POST['Submit'])) {
         }
         
         if(empty($CustContact)) {
-            echo "<font color='red'>Age field is empty.</font><br/>";
+            echo "<font color='red'>Contact field is empty.</font><br/>";
         }
         
         if(empty($TaskNum)) {
-            echo "<font color='red'>Email field is empty.</font><br/>";
+            echo "<font color='red'>Task field is empty.</font><br/>";
         }
         
          if(empty($Paid)) {
-            echo "<font color='red'>Email field is empty.</font><br/>";
+            echo "<font color='red'>Paid field is empty.</font><br/>";
         }
         
         //link to the previous page
@@ -92,13 +92,13 @@ if(isset($_POST['Submit'])) {
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
                         <p>Developer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="CustomerList.php">
                         <i class="ti-user"></i>
                         <p>Customer Control</p>
                     </a>
@@ -176,18 +176,18 @@ if(isset($_POST['Submit'])) {
     <br/><br/>
  
     <form action="CustomerList.php" method="post" name="form1">
-        <table width="100%" border="0">
+        <table class="table" width="100%" border="0">
             <tr> 
                 <td>Name</td>
-                <td><input type="text" name="CustName"></td>
+                <td><input type="text" name="CustName"  maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Contact</td>
-                <td><input type="text" name="CustContact"></td>
+                <td><input type="text" name="CustContact" maxlength="10"></td>
             </tr>
             <tr> 
                 <td>Task</td>
-                <td><input type="text" name="TaskNum"></td>
+                <td><input type="text" name="TaskNum"  maxlength="3"></td>
             </tr>
             <tr> 
                 <td>Paid</td>
