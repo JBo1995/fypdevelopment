@@ -199,7 +199,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id ASC"); // using 
             
              
             
-       echo "<td><button type='button' class='btn btn-primary'><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\">Mark As Complete</a></button></td>"; 
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complet?')\">Mark As Complete</a></button></td>"; 
         
      //   echo "<td><input type=checkbox>Mark As Complete<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></td>";
         

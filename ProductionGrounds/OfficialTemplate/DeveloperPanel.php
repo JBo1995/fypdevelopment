@@ -179,7 +179,18 @@ echo "$num_rows \n";
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Tasks to do</p>
-                                           0
+                                            <?php
+// with help from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM todo", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -253,23 +264,51 @@ echo "$num_rows \n";
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">Completed Tasks</h4>
+                                
+                                <?php
+                                $link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM todocomplete", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "<strong>$num_rows \n </strong> Tasks have been completed ";
+
+?>
+
+                  
+                                <p class="category"></p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <?php
+$servername = "127.0.0.1";
+$username = "jboyle";
+$password = "";
+$dbname = "customersdb";
 
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT id, task, Customer FROM todocomplete";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> <strong>Task:</strong> ". $row["task"]. " completed for Customer ID : " . $row["Customer"] . "<br>";
+    }
+} else {
+    echo "No tasks here";
+}
+
+$conn->close();
+?> 
+        
                             </div>
                         </div>
                     </div>
@@ -356,21 +395,6 @@ echo "$num_rows \n";
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
-
-        	demo.initChartist();
-
-        	$.notify({
-            	
-            	message: "Welcome to <b>DevLink</b> <br>A CRM built for developers"
-
-            },{
-                type: 'success',
-                timer: 3000
-            });
-
-    	});
-	</script>
+	
 
 </html>

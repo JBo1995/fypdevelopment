@@ -11,11 +11,12 @@ if(isset($_POST['Submit'])) {
     // checking empty fields
     if(empty($Task) || empty($Customer)) {                
         if(empty($Task)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+            
+            echo "<font color='red'>Task field is empty.</font><br/>";
         }
         
         if(empty($Customer)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
+            echo "<font color='red'>Customer field is empty.</font><br/>";
         }
         
        
@@ -189,7 +190,7 @@ or die ('Cannot connect to db');
     
     echo "<html>";
     echo "<body>";
-    echo "<select id='mydropbox' onchange='copyValue()'>";
+    echo "<select class='btn btn-primary dropdown-toggle'  id='mydropbox' onchange='copyValue()'>";
 
     while ($row = $result->fetch_assoc()) {
 
@@ -203,7 +204,7 @@ or die ('Cannot connect to db');
     echo "</select>";
     echo "</body>";
     echo "</html>";
-?><input name="Customer" type="text" id="test" readonly="readonly" ></td>
+?><br><br><input name="Customer" type="text" id="test" readonly="readonly" ></td>
 
 
             </tr>
