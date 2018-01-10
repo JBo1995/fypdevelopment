@@ -48,6 +48,12 @@
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
                    DevLink &trade;<br>Developer Panel
+                   <h6><?php 
+session_start();
+
+$login_session=$_SESSION['login_user'];
+echo $login_session;?></h6>
+<a href="DeveloperLogout.php"> Logout </a></h3>
                 </a>
             </div>
 
@@ -142,7 +148,7 @@
                                             
                                         
                                             <?php
-// with help from http://php.net/manual/en/function.mysql-num-rows.php
+// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
@@ -151,7 +157,7 @@ $result = mysql_query("SELECT * FROM Customers", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
-
+//end
 ?>
 
                                           
@@ -189,7 +195,7 @@ $result = mysql_query("SELECT * FROM todo", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
-
+//end
 ?>
                                         </div>
                                     </div>
@@ -267,6 +273,8 @@ echo "$num_rows \n";
                                 <h4 class="title">Completed Tasks</h4>
                                 
                                 <?php
+                                //// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
+
                                 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
@@ -318,6 +326,7 @@ if ($result->num_rows > 0) {
 
        
 $conn->close();
+//end
 ?> 
 
 

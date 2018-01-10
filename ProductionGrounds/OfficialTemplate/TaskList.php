@@ -11,11 +11,11 @@ if(isset($_POST['Submit'])) {
     // checking empty fields
     if(empty($Task) || empty($Customer)) {                
         if(empty($Task)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+            echo "<font color='red'>Task field is empty.</font><br/>";
         }
         
         if(empty($Customer)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
+            echo "<font color='red'>Customer field is empty.</font><br/>";
         }
         
        

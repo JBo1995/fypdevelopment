@@ -1,6 +1,8 @@
 
 <?php
 //including the database connection file
+// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
+
 include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
@@ -16,15 +18,15 @@ if(isset($_POST['Submit'])) {
         }
         
         if(empty($CustContact)) {
-            echo "<font color='red'>Age field was empty.</font><br/>";
+            echo "<font color='red'>Contact field was empty.</font><br/>";
         }
         
         if(empty($TaskNum)) {
-            echo "<font color='red'>Email field was empty.</font><br/>";
+            echo "<font color='red'>Task field was empty.</font><br/>";
         }
         
          if(empty($Paid)) {
-            echo "<font color='red'>Email field was empty.</font><br/>";
+            echo "<font color='red'>Paid field was empty.</font><br/>";
         }
         
         //link to the previous page
@@ -37,6 +39,7 @@ if(isset($_POST['Submit'])) {
         
     }
 }
+//end
 ?>
 
 <?php

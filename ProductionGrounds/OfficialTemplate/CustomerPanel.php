@@ -47,6 +47,12 @@
                 <a href="http://www.creative-tim.com" class="simple-text">
                    DevLink &trade;<br>Customer Panel
                 </a>
+                 <?php 
+session_start();
+
+$login_session=$_SESSION['login_user'];
+echo $login_session;?></h1>
+<a href="logout.php"> Logout </a>
             </div>
 
             <ul class="nav">
@@ -358,21 +364,6 @@
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
 
-        	demo.initChartist();
-
-        	$.notify({
-            	icon: 'ti-gift',
-            	message: "Welcome to <b>DevLink</b> <br>A CRM built for developers"
-
-            },{
-                type: 'success',
-                timer: 3000
-            });
-
-    	});
-	</script>
 
 </html>

@@ -1,6 +1,8 @@
 
 <?php
 //including the database connection file
+// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
+
 include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
@@ -37,6 +39,7 @@ if(isset($_POST['Submit'])) {
         
     }
 }
+//end
 ?>
 
 

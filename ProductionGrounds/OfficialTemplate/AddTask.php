@@ -1,6 +1,8 @@
 
 <?php
 //including the database connection file
+// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
+
 include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
@@ -30,6 +32,7 @@ if(isset($_POST['Submit'])) {
         
     }
 }
+//end
 ?>
 
 
@@ -175,7 +178,7 @@ if(isset($_POST['Submit'])) {
         <table class="table table-striped" width="100%" border="0">
             <tr> 
                 <td>Task</td>
-                <td><input type="text" name="Task"></td>
+                <td><input type="text" name="Task" maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Customer</td>
@@ -224,6 +227,9 @@ or die ('Cannot connect to db');
     var dropboxvalue = document.getElementById('mydropbox').value;
     document.getElementById('test').value = dropboxvalue;
 }</script>
+<!-- End modified componenet --> 
+
+
                             </div>
                             
                         </div>

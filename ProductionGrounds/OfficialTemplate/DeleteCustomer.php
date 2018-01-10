@@ -1,4 +1,5 @@
 <?php
+// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 include("config.php");
  
 $id = $_GET['id'];
@@ -6,4 +7,5 @@ $id = $_GET['id'];
 $result = mysqli_query($mysqli, "DELETE FROM Customers WHERE id=$id");
  
 header("Location:CustomerList.php");
+//end
 ?>
