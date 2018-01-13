@@ -46,7 +46,10 @@ session_start();
 $CustName=$_POST['CustName'];
 $id=$_POST['id'];
 
+$_SESSION['login_userid']=$id;
 $_SESSION['login_user']=$CustName;
+
+
  
 $query = mysql_query("SELECT CustName FROM Customers WHERE CustName='$CustName' and id='$id'");
 

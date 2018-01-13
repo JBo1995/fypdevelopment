@@ -121,6 +121,7 @@ echo $login_session;?></h6>
                             <a href="#">
 								<i class="ti-settings"></i>
 								<p>Settings</p>
+							
                             </a>
                         </li>
                     </ul>
@@ -131,7 +132,9 @@ echo $login_session;?></h6>
 
 
         <div class="content">
+           
             <div class="container-fluid">
+                <a href ='#'><p>Add new developer</p></a>	
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
                         <div class="card">
@@ -315,7 +318,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<br> <strong>Task:</strong> ". $row["task"]. " completed for Customer ID : " . $row["Customer"] . "<br>";
+        echo "<br> <strong>Task:</strong> ". $row["task"]. " completed for Customer ID : " . $row["Customer"] . "<br>" ; 
     }
 } else {
     echo "No tasks here";
@@ -336,10 +339,44 @@ $conn->close();
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
+                                <h4 class="title">Communication tickest pending</h4>
+                                <p class="category"></p>
                             </div>
                             <div class="content">
+                            
+                            
+                            <?php
+//including the database connection file
+include_once("config.php");
+ 
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT CustomerID, Subject FROM Incidentss ORDER BY CustomerID DESC"); // using mysqli_query instead
+?>
+ 
+      
+ 
+ <table class="table table-striped" width='100%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Name</td></strong>
+           <strong> <td>Contact</td></strong>
+           
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['CustomerID']."</td>";
+            echo "<td>".$res['Subject']."</td>";
+           
+           // echo "<td><button type='button' class='btn btn-primary'><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+        }
+        ?>
+    </table>
+    
+
+       
+
                                 <div id="chartActivity" class="ct-chart"></div>
 
                                 <div class="footer">

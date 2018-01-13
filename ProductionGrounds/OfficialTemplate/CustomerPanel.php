@@ -1,3 +1,41 @@
+<?php
+//including the database connection file
+// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
+
+include_once("config.php");
+ 
+if(isset($_POST['Submit'])) {    
+    $CustomerID = $_POST['CustomerID'];
+    $Subject = $_POST['Subject'];
+    $Message = $_POST['Message'];
+   
+        
+    // checking empty fields
+    if(empty($CustomerID) || empty($Subject) || empty($Message)) {                
+        if(empty($CustomerID)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
+        
+        if(empty($Subject)) {
+            echo "<font color='red'>Contact field is empty.</font><br/>";
+        }
+        
+        if(empty($Message)) {
+            echo "<font color='red'>Task field is empty.</font><br/>";
+        }
+        
+        //link to the previous page
+        
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Incidents(CustomerID, Subject, Message) VALUES('$CustomerID','$Subject','$Message')");
+        
+        
+    }
+}
+//end
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,9 +87,13 @@
                 </a>
                  <?php 
 session_start();
-
 $login_session=$_SESSION['login_user'];
-echo $login_session;?></h1>
+$login_sessionid=$_SESSION['login_userid'];
+echo $login_session ; 
+echo "<br>";
+echo $login_sessionid;
+echo "<br>";?>
+</h1>
 <a href="logout.php"> Logout </a>
             </div>
 
@@ -95,7 +137,7 @@ echo $login_session;?></h1>
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Developer Panel</a>
+                    <a class="navbar-brand" href="#">Customer Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -142,8 +184,8 @@ echo $login_session;?></h1>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Capacity</p>
-                                            105GB
+                                            <p>Taks</p>
+                                           -
                                         </div>
                                     </div>
                                 </div>
@@ -167,8 +209,8 @@ echo $login_session;?></h1>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
+                                            <p>Costs</p>
+                                            -
                                         </div>
                                     </div>
                                 </div>
@@ -192,8 +234,8 @@ echo $login_session;?></h1>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
-                                            23
+                                            <p>Communication tickets</p>
+                                            -
                                         </div>
                                     </div>
                                 </div>
@@ -237,8 +279,34 @@ echo $login_session;?></h1>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
+                                                       <h4 class="title">Send Message</h4>
+                                <p class="category">Enter the details below to send a message</p>
+                               
+    <br/><br/>
+ 
+    <form action="CustomerPanel.php" method="post" name="form1">
+        <table class="table" width="100%" border="0">
+            <tr> 
+                <td>Customer ID</td>
+                <td><input type="text" value=" <?php 
+$login_session=$_SESSION['login_user'];
+echo $login_sessionid;?>" name="CustomerID"  maxlength="20" readonly="readonly">              
+             
+</td>
+            </tr>
+            <tr> 
+                <td>Subject</td>
+                <td><input type="text" name="Subject" maxlength="10"></td>
+            </tr>
+            <tr> 
+                <td>Message</td>
+                <td><input type="text" name="Message"  maxlength="100"></td>
+            </tr>
+            <td></td>
+                <td><input type="submit" name="Submit" value="Submit"></td>
+        </table>
+    </form>
+
                             </div>
                             <div class="content">
                                 <div id="chartHours" class="ct-chart"></div>
@@ -315,7 +383,7 @@ echo $login_session;?></h1>
 
                         <li>
                             <a href="http://www.creative-tim.com">
-                                DevLink<br>Developer Panel
+                                DevLink<br>Customer Panel
                             </a>
                         </li>
                         <li>
