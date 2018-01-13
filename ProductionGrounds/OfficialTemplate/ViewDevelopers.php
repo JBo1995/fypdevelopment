@@ -41,10 +41,16 @@ if(isset($_POST['Submit'])) {
 <?php
 //including the database connection file
 include_once("config.php");
- 
+session_start();
+
+$login_session=$_SESSION['login_user'];
+//echo $login_session
+?>
+<?php
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM login ORDER BY id DESC"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM login where username = '".$_SESSION['login_user']."'"); 
+//$result = mysqli_query($mysqli, "SELECT * FROM login ORDER BY id DESC");// using mysqli_query instead
 ?>
  
  
@@ -195,7 +201,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login ORDER BY id DESC"); // usin
             echo "<tr>";
             echo "<td>".$res['username']."</td>";
             echo "<td>".$res['password']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"editDevelopers.php?id=$res[id]\">change</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"editDevelopers.php?id=$res[id]\">Change Password</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
         }
         ?>
     </table>

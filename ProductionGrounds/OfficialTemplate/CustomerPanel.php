@@ -94,7 +94,7 @@ echo "<br>";
 echo $login_sessionid;
 echo "<br>";?>
 </h1>
-<a href="logout.php"> Logout </a>
+<a href="CustomerLogout.php"> Logout </a>
             </div>
 
             <ul class="nav">
@@ -185,14 +185,25 @@ echo "<br>";?>
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Taks</p>
-                                           -
+                                            <?php
+// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$_SESSION['login_userid']."'", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+//end
+?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
+                                        <i class="ti-reload"></i> These are the tasks that developers are working on for you
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +245,7 @@ echo "<br>";?>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Communication tickets</p>
+                                            <p>Communication Tickets</p>
                                             -
                                         </div>
                                     </div>
@@ -242,7 +253,7 @@ echo "<br>";?>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-timer"></i> In the last hour
+                                        <i class="ti-timer"></i>
                                     </div>
                                 </div>
                             </div>

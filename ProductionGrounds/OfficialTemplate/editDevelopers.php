@@ -194,23 +194,22 @@ while($res = mysqli_fetch_array($result))
     
     <form name="form1" method="post" action="editDevelopers.php">
         <table border="0">
+            
             <tr> 
-                <td>Name</td>
-                <td><input type="text" name="username" maxlength="20" value="<?php echo $username;?>"></td>
+                <td>Username</td>
+                <td><input type="text" name="username" maxlength="20"  readonly ="readonly" value="<?php echo $username;?>"></td>
             </tr>
             <tr> 
-                <td>Contact</td>
-                <td><input type="text" name="password" maxlength="10" value="<?php echo $password;?>"></td>
+                <td>Password</td>
+                <td><input  type="text" name="password" maxlength="10"  value="<?php echo $password;?>"></td>
             </tr>
             
             <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+               <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
                 <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>
-
-
 
 
 

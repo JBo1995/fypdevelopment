@@ -53,6 +53,7 @@ session_start();
 
 $login_session=$_SESSION['login_user'];
 echo $login_session;?></h6>
+
 <a href="DeveloperLogout.php"> Logout </a></h3>
                 </a>
             </div>
@@ -134,7 +135,7 @@ echo $login_session;?></h6>
         <div class="content">
            
             <div class="container-fluid">
-                <a href ='#'><p>Add new developer</p></a>	
+                <a href ='ViewDevelopers.php'><p>Change Password</p></a>	<br> <a href ='AddDeveloper.php'><p>Add New Team Member</p></a>
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
                         <div class="card">
