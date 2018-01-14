@@ -5,32 +5,36 @@
 include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
-    $CustomerID = $_POST['CustomerID'];
-    $Subject = $_POST['Subject'];
     $Message = $_POST['Message'];
+    $CustomerID = $_POST['CustomerID'];
+    $CustomerName = $_POST['CustomerName'];
+    $Subject = $_POST['Subject'];
+    $DeveloperResponse = $_POST['DeveloperResponse'];
    
         
     // checking empty fields
-    if(empty($CustomerID) || empty($Subject) || empty($Message)) {                
+    if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject)) {                
+        if(empty($Message)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
         if(empty($CustomerID)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
-        
+        if(empty($CustomerName)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
+        }
         if(empty($Subject)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
         
-        if(empty($Message)) {
-            echo "<font color='red'>Task field is empty.</font><br/>";
-        }
         
         //link to the previous page
         
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Incidents(CustomerID, Subject, Message) VALUES('$CustomerID','$Subject','$Message')");
-        
+        $result = mysqli_query($mysqli, "INSERT INTO Incidents(Message,CustomerID,CustomerName,Subject) VALUES('$Message','$CustomerID','$CustomerName','$Subject')");
+        echo "<script type='text/javascript'>alert('Your Support Ticket has been sent. Thank you!')</script>";
         
     }
 }
@@ -107,7 +111,7 @@ echo "<br>";?>
                 <li>
                     <a href="user.html">
                         <i class="ti-user"></i>
-                        <p>Customer Control</p>
+                        <p>Support Tickets</p>
                     </a>
                 </li>
                 <li>
@@ -184,7 +188,7 @@ echo "<br>";?>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Taks</p>
+                                            <p>Tasks</p>
                                             <?php
 // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
@@ -203,7 +207,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> These are the tasks that developers are working on for you
+                                        <i class="ti-reload"></i> Tasks developers are working on for you
                                     </div>
                                 </div>
                             </div>
@@ -245,8 +249,19 @@ echo "$num_rows \n";
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Communication Tickets</p>
-                                            -
+                                            <p>Open Communication Tickets</p>
+                                            <?php
+// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM Incidents WHERE CustomerID = '".$_SESSION['login_userid']."'", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+//end
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -290,8 +305,8 @@ echo "$num_rows \n";
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                                       <h4 class="title">Send Message</h4>
-                                <p class="category">Enter the details below to send a message</p>
+                                                       <h4 class="title">SendSupport Ticket</h4>
+                                <p class="category">Enter the details below to send a support ticket</p>
                                
     <br/><br/>
  
@@ -306,12 +321,22 @@ echo $login_sessionid;?>" name="CustomerID"  maxlength="20" readonly="readonly">
 </td>
             </tr>
             <tr> 
+                <td>Name</td>
+                <td><input value="<?php 
+$login_session=$_SESSION['login_user'];
+echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly="readonly"></td>
+            </tr>
+            <tr> 
                 <td>Subject</td>
                 <td><input type="text" name="Subject" maxlength="10"></td>
             </tr>
             <tr> 
                 <td>Message</td>
-                <td><input type="text" name="Message"  maxlength="100"></td>
+                <td><textarea type="text" name="Message"  maxlength="100"></textarea></td>
+            </tr>
+            <tr> 
+                <td>Response</td>
+                <td><textarea type="text" name="DeveloperResponse"  maxlength="100" readonly="readonly" placeholder="A developer will respond here..."></textarea></textarea></td>
             </tr>
             <td></td>
                 <td><input type="submit" name="Submit" value="Submit"></td>
