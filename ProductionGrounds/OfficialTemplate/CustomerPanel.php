@@ -91,12 +91,24 @@ if(isset($_POST['Submit'])) {
                 </a>
                  <?php 
 session_start();
+
+
 $login_session=$_SESSION['login_user'];
 $login_sessionid=$_SESSION['login_userid'];
+
+
+
 echo $login_session ; 
 echo "<br>";
 echo $login_sessionid;
-echo "<br>";?>
+echo "<br>";
+
+
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+
+?>
 </h1>
 <a href="CustomerLogout.php"> Logout </a>
             </div>
@@ -121,7 +133,7 @@ echo "<br>";?>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="CustomerViewInvoices.php">
                         <i class="ti-text"></i>
                         <p>Invoices</p>
                     </a>
@@ -184,18 +196,29 @@ echo "<br>";?>
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">
                                             <i class="ti-server"></i>
+                                            
                                         </div>
                                     </div>
+                                    
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Tasks</p>
-                                            <?php
+                                           0 <?php
 // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
-$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$_SESSION['login_userid']."'", $link);
+
+
+                $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
+if(is_resource($result) and mysql_num_rows($result)>0){
+    $row = mysql_fetch_array($result);
+    echo $row["id"];
+    }
+            
+
+$result = mysql_query("SELECT * FROM todo WHERE Customer = ''", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
@@ -208,8 +231,14 @@ echo "$num_rows \n";
                                     <hr />
                                     <div class="stats">
                                         <i class="ti-reload"></i> Tasks developers are working on for you
+                                        
                                     </div>
+                                    
                                 </div>
+                                <div class="progress">
+                                    
+  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
                             </div>
                         </div>
                     </div>
@@ -250,13 +279,16 @@ echo "$num_rows \n";
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Open Communication Tickets</p>
+                                         
+                
+                
                                             <?php
 // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
-$result = mysql_query("SELECT * FROM Incidents WHERE CustomerID = '".$_SESSION['login_userid']."'", $link);
+$result = mysql_query("SELECT * FROM Incidents WHERE CustomerName = '".$_SESSION['login_user']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
@@ -305,6 +337,7 @@ echo "$num_rows \n";
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
+                                <a href="ChangePassword.php">Change password</a>
                                                        <h4 class="title">SendSupport Ticket</h4>
                                 <p class="category">Enter the details below to send a support ticket</p>
                                
@@ -314,9 +347,13 @@ echo "$num_rows \n";
         <table class="table" width="100%" border="0">
             <tr> 
                 <td>Customer ID</td>
-                <td><input type="text" value=" <?php 
-$login_session=$_SESSION['login_user'];
-echo $login_sessionid;?>" name="CustomerID"  maxlength="20" readonly="readonly">              
+                <td><input type="text" value="<?php
+                $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
+if(is_resource($result) and mysql_num_rows($result)>0){
+    $row = mysql_fetch_array($result);
+    echo $row["id"];
+    }
+                ?>"   name="CustomerID"  maxlength="20" readonly="readonly">              
              
 </td>
             </tr>
@@ -335,8 +372,12 @@ echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly=
                 <td><textarea type="text" name="Message"  maxlength="100"></textarea></td>
             </tr>
             <tr> 
-                <td>Response</td>
-                <td><textarea type="text" name="DeveloperResponse"  maxlength="100" readonly="readonly" placeholder="A developer will respond here..."></textarea></textarea></td>
+                <td>
+                    
+                    
+                    
+                </td>
+                <td><input type="hidden" name="DeveloperResponse"  maxlength="100" readonly="readonly" placeholder="A developer will respond here..."></td>
             </tr>
             <td></td>
                 <td><input type="submit" name="Submit" value="Submit"></td>

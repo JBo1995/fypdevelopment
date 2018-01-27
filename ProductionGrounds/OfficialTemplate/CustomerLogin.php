@@ -22,8 +22,9 @@
 <tr>
 <td>Your Unique ID</td>
 <td>:</td>
-<td><input name="id" type="password" id="id"></td>
+<td><input name="TaskNum" type="password" id="TaskNum"></td>
 </tr>
+
 <tr>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -36,6 +37,7 @@
 
 </tr>
 </table>
+
 <?php
 if (isset($_POST['submit']))
 	{	  
@@ -44,14 +46,18 @@ include("config2.php");
 session_start();
 
 $CustName=$_POST['CustName'];
-$id=$_POST['id'];
+$TaskNum=$_POST['TaskNum'];
+
+
+
+
+
 
 $_SESSION['login_userid']=$id;
 $_SESSION['login_user']=$CustName;
 
-
  
-$query = mysql_query("SELECT CustName FROM Customers WHERE CustName='$CustName' and id='$id'");
+$query = mysql_query("SELECT CustName FROM Customers WHERE CustName='$CustName' and TaskNum='$TaskNum'");
 
  if (mysql_num_rows($query) != 0)
 {
@@ -74,5 +80,6 @@ echo "<script type='text/javascript'>alert('User Name Or id Invalid!')</script>"
     </div>
    
   </div>
+  
 </body>
 </html>

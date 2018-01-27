@@ -1,72 +1,87 @@
+
+
 <?php
-// including the database connection file
+//including the database connection file
 // With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 
 include_once("config.php");
  
-if(isset($_POST['update']))
-{    
-    $id = $_POST['id'];
-    
-   $Message = $_POST['Message'];
-    $CustomerID = $_POST['CustomerID'];
-    $CustomerName = $_POST['CustomerName'];
-    $Subject = $_POST['Subject'];
-    $DeveloperResponse = $_POST['DeveloperResponse'];
-    
+if(isset($_POST['Submit'])) {    
+    $Date = $_POST['Date'];
+    $CustName = $_POST['CustName'];
+     $Customerid = $_POST['Customerid'];
+    $Items = $_POST['Items'];
+     $Quantity = $_POST['Quantity'];
+     $SubTotal = $_POST['SubTotal'];
+    $Price = $_POST['Price'];
+    $AmountPaid = $_POST['AmountPaid'];
+     $AmountDue = $_POST['AmountDue'];
+   
+        
     // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
-        if(empty($Message)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue)) {                
+        if(empty($Date)) {
+            
+            echo "<font color='red'>Date field is empty.</font><br/>";
         }
-        if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+        if(empty($CustName)) {
+            
+            echo "<font color='red'>Customer Name field is empty.</font><br/>";
         }
-        if(empty($CustomerName)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+        if(empty($Customerid)) {
+            
+            echo "<font color='red'>Customer ID field is empty.</font><br/>";
         }
-        if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
+        if(empty($Items)) {
+            
+            echo "<font color='red'>Items field is empty.</font><br/>";
         }
-        if(empty($DeveloperResponse)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
+        if(empty($Quantity)) {
+            
+            echo "<font color='red'>Quantity field is empty.</font><br/>";
         }
+        if(empty($Price)) {
+            
+            echo "<font color='red'>Price field is empty.</font><br/>";
+        }
+       
+        if(empty($SubTotal)) {
+            
+            echo "<font color='red'>SubTotal field is empty.</font><br/>";
+        }
+        if(empty($AmountPaid)) {
+            
+            echo "<font color='red'>Amount Paid field is empty.</font><br/>";
+        }
+        if(empty($AmountDue)) {
+            
+            echo "<font color='red'>Amount Due field is empty.</font><br/>";
+        }
+       
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,SubTotal,Price,AmountPaid,AmountDue) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$SubTotal','$Price','$AmountPaid','$AmountDue',)");
         
-        
-         header("Location: AAADevViewMessages.php");
-        
-    } else {    
-        //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
-        
-        //redirectig to the display page. In our case, it is index.php
-        header("Location: AAADevViewMessages.php");
+        echo "<font color='red'>Success</font><br/>";
     }
-}
-?>
-
-<?php
-//getting id from url
-$id = $_GET['id'];
- 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
- 
-while($res = mysqli_fetch_array($result))
-{
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
 }
 //end
 ?>
 
+<?php
+//including the database connection file
+include_once("config.php");
+session_start();
 
-
-
-
+$login_session=$_SESSION['login_user'];
+ 
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE CustName = '".$_SESSION['login_user']."'"); // using mysqli_query instead
+?>
 
 <!doctype html>
 <html lang="en">
@@ -113,8 +128,27 @@ while($res = mysqli_fetch_array($result))
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                   DevLink &trade;<br>Developer Panel
-                </a>
+                   DevLink &trade;<br>Customer Panel
+                </a><?php
+                session_start();
+
+
+$login_session=$_SESSION['login_user'];
+$login_sessionid=$_SESSION['login_userid'];
+
+
+
+echo $login_session ; 
+echo "<br>";
+echo $login_sessionid;
+echo "<br>";
+
+
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+
+?>
             </div>
 
             <ul class="nav">
@@ -196,49 +230,48 @@ while($res = mysqli_fetch_array($result))
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Task List</h4>
+                                <p class="category">Here is a list of your current tasks</p>
+                      
+
+
+
+                   
                                
-
  
-    <br/><br/>
+ 
+   <table class="table table-striped" width='50%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Invoice ID</td></strong>
+           <strong> <td>Customer ID</td></strong>
+            <strong><td>Customer Name</td></strong>
+            
+            
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['id']."</td>";
+            echo "<td>".$res['Customerid']."</td>";
+            echo "<td>".$res['CustName']."</td>";  
+            
+            
+             
+            
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerSeeInvoice.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complete?')\">Mark As Complete</a></button></td>"; 
+        
+     //   echo "<td><input type=checkbox>Mark As Complete<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></td>";
+        
+            }
+        ?>
+        
+        
+  
+ 
+    </table>
     
-    <form name="form1" method="post" action="DevReplyMessage.php">
-        <table border="0">
-            <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
-            </tr>
-            <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
-            </tr>
-            <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
-            </tr>
-             <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
-            
-            <tr> 
-                <td>Response</td>
-                <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
-            </tr>
-            
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
-            </tr>
-        </table>
-    </form>
-
-
+    
 
 
 

@@ -196,8 +196,8 @@ while($res = mysqli_fetch_array($result))
         <table border="0">
             
             <tr> 
-                <td>Username</td>
-                <td><input type="text" name="username" maxlength="20"  readonly ="readonly" value="<?php echo $username;?>"></td>
+                <td></td>
+                <td><input type="hidden" name="username" maxlength="20"  readonly ="readonly" value="<?php echo $username;?>"></td>
             </tr>
             <tr> 
                 <td>Password</td>

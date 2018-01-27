@@ -1,21 +1,20 @@
+
 <?php
-// including the database connection file
+//including the database connection file
 // With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 
 include_once("config.php");
  
-if(isset($_POST['update']))
-{    
-    $id = $_POST['id'];
-    
-   $Message = $_POST['Message'];
+if(isset($_POST['Submit'])) {    
+    $Message = $_POST['Message'];
     $CustomerID = $_POST['CustomerID'];
     $CustomerName = $_POST['CustomerName'];
     $Subject = $_POST['Subject'];
     $DeveloperResponse = $_POST['DeveloperResponse'];
-    
+   
+        
     // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
+    if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject)) {                
         if(empty($Message)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
@@ -28,44 +27,33 @@ if(isset($_POST['update']))
         if(empty($Subject)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
-        if(empty($DeveloperResponse)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
         
         
-         header("Location: AAADevViewMessages.php");
+        //link to the previous page
         
-    } else {    
-        //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Incidents(Message,CustomerID,CustomerName,Subject) VALUES('$Message','$CustomerID','$CustomerName','$Subject')");
+        echo "<script type='text/javascript'>alert('Your Support Ticket has been sent. Thank you!')</script>";
         
-        //redirectig to the display page. In our case, it is index.php
-        header("Location: AAADevViewMessages.php");
     }
-}
-?>
-
-<?php
-//getting id from url
-$id = $_GET['id'];
- 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
- 
-while($res = mysqli_fetch_array($result))
-{
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
 }
 //end
 ?>
 
+<?php
+//including the database connection file
+include_once("config.php");
+ session_start();
 
-
-
+$login_session=$_SESSION['login_user'];
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '".$_SESSION['login_user']."'"); // using mysqli_query instead
+?>
+ 
+ 
 
 
 <!doctype html>
@@ -157,7 +145,7 @@ while($res = mysqli_fetch_array($result))
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Customer Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -199,46 +187,31 @@ while($res = mysqli_fetch_array($result))
                                 <h4 class="title">Customer List</h4>
                                 <p class="category">Here is a list of your current customers</p>
                                
-
+ <a href="AddCustomer.php">Add New Customer</a><br/><br/>
  
-    <br/><br/>
+   <table class="table table-striped" width='100%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Message</td></strong>
+           <strong> <td>Customer ID</td></strong>
+            <strong><td>Customer Name</td></strong>
+            
+            <strong><td>Developer Response</td></strong>
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['Message']."</td>";
+            echo "<td>".$res['CustomerID']."</td>";
+            echo "<td>".$res['CustomerName']."</td>";  
+           
+             echo "<td>".$res['DeveloperResponse']."</td>";
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Close Ticket</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Rate Ticket</a></button></td>";        
+        }
+        ?>
+    </table>
     
-    <form name="form1" method="post" action="DevReplyMessage.php">
-        <table border="0">
-            <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
-            </tr>
-            <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
-            </tr>
-            <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
-            </tr>
-             <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
-            
-            <tr> 
-                <td>Response</td>
-                <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
-            </tr>
-            
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
-            </tr>
-        </table>
-    </form>
-
-
+    
 
 
 

@@ -8,39 +8,30 @@ if(isset($_POST['update']))
 {    
     $id = $_POST['id'];
     
-   $Message = $_POST['Message'];
-    $CustomerID = $_POST['CustomerID'];
-    $CustomerName = $_POST['CustomerName'];
-    $Subject = $_POST['Subject'];
-    $DeveloperResponse = $_POST['DeveloperResponse'];
+   $CustName=$_POST['CustName'];
+    $TaskNum=$_POST['TaskNum'];
+    
     
     // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
-        if(empty($Message)) {
+    if(empty($CustName) || empty($TaskNum)) {            
+        if(empty($CustName)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
-        if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerName)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
-        if(empty($DeveloperResponse)) {
+        
+        if(empty($TaskNum)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
         
+       
         
-         header("Location: AAADevViewMessages.php");
+         header("Location: ChangePassword.php");
         
     } else {    
         //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
+        $result = mysqli_query($mysqli, "UPDATE Customers SET CustName='$CustName',TaskNum='$TaskNum' WHERE id=$id");
         
         //redirectig to the display page. In our case, it is index.php
-        header("Location: AAADevViewMessages.php");
+        header("Location: ChangePassword.php");
     }
 }
 ?>
@@ -50,15 +41,13 @@ if(isset($_POST['update']))
 $id = $_GET['id'];
  
 //selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
+$result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE id=$id");
  
 while($res = mysqli_fetch_array($result))
 {
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
+    $CustName = $res['CustName'];
+    $TaskNum = $res['TaskNum'];
+   
 }
 //end
 ?>
@@ -203,42 +192,24 @@ while($res = mysqli_fetch_array($result))
  
     <br/><br/>
     
-    <form name="form1" method="post" action="DevReplyMessage.php">
+    <form name="form1" method="post" action="EditPassword.php">
         <table border="0">
-            <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
-            </tr>
-            <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
-            </tr>
-            <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
-            </tr>
-             <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
             
             <tr> 
-                <td>Response</td>
-                <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
+                <td></td>
+                <td><input type="hidden" name="CustName" maxlength="20"  readonly ="readonly" value="<?php echo $CustName;?>"></td>
+            </tr>
+            <tr> 
+                <td>Password</td>
+                <td><input  type="text" name="TaskNum" maxlength="10"  value="<?php echo $TaskNum;?>"></td>
             </tr>
             
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
-            </tr>
             <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+               <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
                 <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>
-
-
 
 
 

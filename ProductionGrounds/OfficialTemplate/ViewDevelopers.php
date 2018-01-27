@@ -201,7 +201,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login where username = '".$_SESSI
             echo "<tr>";
             echo "<td>".$res['username']."</td>";
             echo "<td>".$res['password']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"editDevelopers.php?id=$res[id]\">Change Password</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"editDevelopers.php?id=$res[id]\">Change Password</a></button></td>";        
         }
         ?>
     </table>

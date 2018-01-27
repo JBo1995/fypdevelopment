@@ -1,64 +1,23 @@
 <?php
-// including the database connection file
-// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
-
-include_once("config.php");
- 
-if(isset($_POST['update']))
-{    
-    $id = $_POST['id'];
-    
-   $Message = $_POST['Message'];
-    $CustomerID = $_POST['CustomerID'];
-    $CustomerName = $_POST['CustomerName'];
-    $Subject = $_POST['Subject'];
-    $DeveloperResponse = $_POST['DeveloperResponse'];
-    
-    // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
-        if(empty($Message)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerName)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
-        if(empty($DeveloperResponse)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
-        
-        
-         header("Location: AAADevViewMessages.php");
-        
-    } else {    
-        //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
-        
-        //redirectig to the display page. In our case, it is index.php
-        header("Location: AAADevViewMessages.php");
-    }
-}
-?>
-
-<?php
 //getting id from url
 $id = $_GET['id'];
  
 //selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
+$result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE id=$id");
  
 while($res = mysqli_fetch_array($result))
 {
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
+    
+    
+     $Date = $res['Date'];
+    $CustName = $res['CustName'];
+     $Customerid =$res['Customerid'];
+    $Items = $resT['Items'];
+     $Quantity = $res['Quantity'];
+     $SubTotal = $res['SubTotal'];
+    $Price = $res['Price'];
+    $AmountPaid = $res['AmountPaid'];
+     $AmountDue = $res['AmountDue'];
 }
 //end
 ?>
@@ -203,33 +162,23 @@ while($res = mysqli_fetch_array($result))
  
     <br/><br/>
     
-    <form name="form1" method="post" action="DevReplyMessage.php">
+    <form name="form1" method="post" action="EditCustomers.php">
         <table border="0">
             <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
+                <td>Name</td>
+                <td><input type="text" name="CustName" maxlength="20" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
+                <td>Contact</td>
+                <td><input type="text" name="CustContact" maxlength="10" value="<?php echo $CustContact;?>"></td>
             </tr>
             <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
+                <td>Tasks</td>
+                <td><input type="text" name="TaskNum" maxlength="3" value="<?php echo $TaskNum;?>"></td>
             </tr>
              <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
-            
-            <tr> 
-                <td>Response</td>
-                <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
-            </tr>
-            
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
+                <td>Paid</td>
+                <td><input type="text" name="Paid" value="<?php echo $Paid;?>"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>

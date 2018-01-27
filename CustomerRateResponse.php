@@ -13,6 +13,7 @@ if(isset($_POST['update']))
     $CustomerName = $_POST['CustomerName'];
     $Subject = $_POST['Subject'];
     $DeveloperResponse = $_POST['DeveloperResponse'];
+     $ResponseRating = $_POST['ResponseRating'];
     
     // checking empty fields
   if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
@@ -31,13 +32,16 @@ if(isset($_POST['update']))
         if(empty($DeveloperResponse)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
+         if(empty($ResponseRating)) {
+            echo "<font color='red'>Contact field is empty.</font><br/>";
+        }
         
         
          header("Location: AAADevViewMessages.php");
         
     } else {    
         //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
+        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse', ResponseRating='$ResponseRating', WHERE id=$id");
         
         //redirectig to the display page. In our case, it is index.php
         header("Location: AAADevViewMessages.php");
@@ -59,6 +63,7 @@ while($res = mysqli_fetch_array($result))
     $CustomerName = $res['CustomerName'];
     $Subject = $res['Subject'];
     $DeveloperResponse = $res['DeveloperResponse'];
+     $ResponseRating = $_POST['ResponseRating'];
 }
 //end
 ?>
@@ -225,11 +230,6 @@ while($res = mysqli_fetch_array($result))
             <tr> 
                 <td>Response</td>
                 <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
-            </tr>
-            
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>

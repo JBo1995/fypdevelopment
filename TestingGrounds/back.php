@@ -7,23 +7,23 @@ include_once("Config.php");
  
 if(isset($_POST['Submit'])) {    
     $Date = $_POST['Date'];
-    $CustName = $_POST['CustName'];
+    $CustName1 = $_POST['CustName1'];
      $Customerid = $_POST['Customerid'];
     $Items = $_POST['Items'];
      $Quantity = $_POST['Quantity'];
-     $SubTotal = $_POST['SubTotal'];
     $Price = $_POST['Price'];
+     $SubTotal = $_POST['SubTotal'];
     $AmountPaid = $_POST['AmountPaid'];
      $AmountDue = $_POST['AmountDue'];
    
         
     // checking empty fields
-    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue)) {                
+    if(empty($Date) || empty($CustName1) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue) || empty($Customer)) {                
         if(empty($Date)) {
             
             echo "<font color='red'>Date field is empty.</font><br/>";
         }
-        if(empty($CustName)) {
+        if(empty($CustName1)) {
             
             echo "<font color='red'>Customer Name field is empty.</font><br/>";
         }
@@ -43,11 +43,11 @@ if(isset($_POST['Submit'])) {
             
             echo "<font color='red'>Price field is empty.</font><br/>";
         }
-       
         if(empty($SubTotal)) {
             
-            echo "<font color='red'>SubTotal field is empty.</font><br/>";
+            echo "<font color='red'>Subtotal field is empty.</font><br/>";
         }
+        
         if(empty($AmountPaid)) {
             
             echo "<font color='red'>Amount Paid field is empty.</font><br/>";
@@ -56,20 +56,22 @@ if(isset($_POST['Submit'])) {
             
             echo "<font color='red'>Amount Due field is empty.</font><br/>";
         }
+        
+     
+        
        
         //link to the previous page
         echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,SubTotal,Price,AmountPaid,AmountDue) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$SubTotal','$Price','$AmountPaid','$AmountDue',)");
+        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName1,Customerid,Items,Quantity,Price,SubTotal,AmountPaid,AmountDue) VALUES('$Date','$CustName1','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountPaid','$AmountDue',)");
         
         echo "<font color='red'>Success</font><br/>";
     }
 }
 //end
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
    <!-- /https://css-tricks.com/html-invoice/ -->
 
@@ -128,7 +130,7 @@ or die ('Cannot connect to db');
     
     echo "<html>";
     echo "<body>";
-    echo "<select class='btn btn-primary dropdown-toggle' name='CustName' id='CustName' onchange='copyValue()'>";
+    echo "<select class='btn btn-primary dropdown-toggle'  id='CustName1' onchange='copyValue()'>";
 
     while ($row = $result->fetch_assoc()) {
 
@@ -142,10 +144,10 @@ or die ('Cannot connect to db');
     echo "</select>";
     echo "</body>";
     echo "</html>";
-?><br><br><td>Customer ID : </td><input type="text" name='Customerid' id="Customerid" readonly="readonly" ></td>
+?><br><br><td>Customer ID : </td><input type="text" id="Customerid" readonly="readonly" ></td>
 
 <script>function copyValue() {
-    var dropboxvalue = document.getElementById('CustName').value;
+    var dropboxvalue = document.getElementById('CustName1').value;
     document.getElementById('Customerid').value = dropboxvalue;
 }</script>
 
@@ -154,22 +156,25 @@ or die ('Cannot connect to db');
 		
 		</div>
 		
-		<div ></div>
+		<div style="clear:both"></div>
 		
-		<div>
+		<div id="customer">
 
             
 
-            <table >
-                
+            <table id="meta">
+                <tr>
+                    <td class="meta-head">Invoice #</td>
+                    <td><textarea>000123</textarea></td>
+                </tr>
                 <tr>
 
                     <td class="meta-head" >Date</td>
-                    <td><input type="text" id="Date" name="Date"></td>
+                    <td><textarea id="date" name="Date">December 15, 2009</textarea></td>
                 </tr>
                 <tr>
-                    <td name="AmountDue">Amount Due</td>
-                    <td><input type="text" name="AmountDue1" id="AmountDue1">
+                    <td class="meta-head" name="AmountDue">Amount Due</td>
+                    <td><div class="due" id="AmountDue">$875.00</div></td>
                 </tr>
 
             </table>
@@ -186,88 +191,48 @@ or die ('Cannot connect to db');
 		      <th>Price</th>
 		  </tr>
 		  
-		  
- 
-	
-		  
 		  <tr class="item-row">
-		      <td ><div class="delete-wpr"><input name="Items"></div></td>
-		      <td ><input type="text"></td>
-		      <td><input  type="text" id="Cost" name="Cost"></td>
-		      <td><input  type="text" id="Quantity" name="Quantity" onblur="MyValidation()" ></td>
-		      <td ><input type="text" name="Price" id="Price"  ></td>
-		      
-		      
-		        <tr>
-		      <td colspan="2" > </td>
-		      <td colspan="2" >Total</td>
-		      <td><input type="text" id="SubTotal" name="SubTotal" ></td>
+		      <td class="item-name"><div class="delete-wpr"><textarea>What is the item</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
+		      <td class="description"><textarea>What is the customer paying for</textarea></td>
+		      <td><textarea class="cost">$650.00</textarea></td>
+		      <td><textarea class="qty" id="Quantity"name="Quantity">1</textarea></td>
+		      <td><span class="price" id="Price">$650.00</span></td>
 		  </tr>
 		  
 		  
 		  
+		 
+		  
 		  <tr>
-		      <td colspan="2" > </td>
-		      <td colspan="2" >Amount Paid</td>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line" >Subtotal</td>
+		      <td class="total-value"><div name="SubTotal" id="SubTotal">$875.00</div></td>
+		  </tr>
+		  <tr>
 
-		      <td ><input type="text" name="AmountPaid" id="AmountPaid" ></td>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line">Total</td>
+		      <td class="total-value"><div id="total">$875.00</div></td>
 		  </tr>
 		  <tr>
-		      <td colspan="2" > </td>
-		      <td colspan="2" >Balance Due</td>
-		      <td><input type="text" id="AmountDue" name="AmountDue" ></td>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line" >Amount Paid</td>
+
+		      <td class="total-value"><textarea id="AmountPaid">$0.00</textarea></td>
 		  </tr>
+		  <tr>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line balance">Balance Due</td>
+		      <td class="total-value balance"><div id="AmountDue" class="due">$875.00</div></td>
+		  </tr>
+		
 		</table>
-		  <td><input type="Submit" name="Submit" value="Send"></td><br><br>
+		
+		
+		 
+		  <td><input type="submit" name="Submit" value="Send"></td><br><br>
 		</div>
 	</form>
-		      
-		      <script>
-		      function MyValidation(){
-             calculate();
-              calculate1();
-              calculate2();
-                calculate3();
-                }
-</script>		      
-		      
-		     <script> calculate = function()
-{
-    var resources = document.getElementById('Cost').value;
-    var minutes = document.getElementById('Quantity').value; 
-    document.getElementById('Price').value = parseInt(resources)*parseInt(minutes);
-     
-   }</script>
-   <script> calculate1 = function()
-{
-    var resources = document.getElementById('Cost').value;
-    var minutes = document.getElementById('Quantity').value; 
-    document.getElementById('AmountDue').value = parseInt(resources)*parseInt(minutes);
-   }</script>
-   <script> calculate2 = function()
-{
-    var resources = document.getElementById('AmountDue').value;
-    var minutes = 1
-    document.getElementById('AmountDue1').value = parseInt(resources)*parseInt(minutes);
-     
-   }</script>
-    <script> calculate3 = function()
-{
-    var resources = document.getElementById('Cost').value;
-    var minutes = document.getElementById('Quantity').value; 
-    document.getElementById('SubTotal').value = parseInt(resources)*parseInt(minutes);
-     
-   }</script>
-		  
-
-		
-		  
-		
-
-
-
-
-
 	</div>
 	
 </body>

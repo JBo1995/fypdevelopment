@@ -1,73 +1,73 @@
+
 <?php
-// including the database connection file
+//including the database connection file
 // With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 
 include_once("config.php");
  
-if(isset($_POST['update']))
-{    
-    $id = $_POST['id'];
-    
-   $Message = $_POST['Message'];
-    $CustomerID = $_POST['CustomerID'];
-    $CustomerName = $_POST['CustomerName'];
-    $Subject = $_POST['Subject'];
-    $DeveloperResponse = $_POST['DeveloperResponse'];
-    
-    // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($DeveloperResponse)) {                
-        if(empty($Message)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerName)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
-        if(empty($DeveloperResponse)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
+if(isset($_POST['Submit'])) {    
+   $Date = $_POST['Date'];
+    $CustName = $_POST['CustName'];
+     $Customerid = $_POST['Customerid'];
+    $Items = $_POST['Items'];
+     $Quantity = $_POST['Quantity'];
+     $SubTotal = $_POST['SubTotal'];
+    $Price = $_POST['Price'];
+    $AmountPaid = $_POST['AmountPaid'];
+     $AmountDue = $_POST['AmountDue'];
         
+       // checking empty fields
+    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue)) {                
+        if(empty($Date)) {
+            
+            echo "<font color='red'>Date field is empty.</font><br/>";
+        }
+        if(empty($CustName)) {
+            
+            echo "<font color='red'>Customer Name field is empty.</font><br/>";
+        }
+        if(empty($Customerid)) {
+            
+            echo "<font color='red'>Customer ID field is empty.</font><br/>";
+        }
+        if(empty($Items)) {
+            
+            echo "<font color='red'>Items field is empty.</font><br/>";
+        }
+        if(empty($Quantity)) {
+            
+            echo "<font color='red'>Quantity field is empty.</font><br/>";
+        }
+        if(empty($Price)) {
+            
+            echo "<font color='red'>Price field is empty.</font><br/>";
+        }
+       
+        if(empty($SubTotal)) {
+            
+            echo "<font color='red'>SubTotal field is empty.</font><br/>";
+        }
+        if(empty($AmountPaid)) {
+            
+            echo "<font color='red'>Amount Paid field is empty.</font><br/>";
+        }
+        if(empty($AmountDue)) {
+            
+            echo "<font color='red'>Amount Due field is empty.</font><br/>";
+        }
+       
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    } else { 
+        // if all the fields are filled (not empty)             
+        //insert data to database
+        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountPaid,AmountDue) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountPaid','$AmountDue')");
         
-         header("Location: AAADevViewMessages.php");
-        
-    } else {    
-        //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', DeveloperResponse='$DeveloperResponse' WHERE id=$id");
-        
-        //redirectig to the display page. In our case, it is index.php
-        header("Location: AAADevViewMessages.php");
+        echo "<font color='red'>Success</font><br/>";
     }
-}
-?>
-
-<?php
-//getting id from url
-$id = $_GET['id'];
- 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
- 
-while($res = mysqli_fetch_array($result))
-{
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
 }
 //end
 ?>
-
-
-
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -137,7 +137,7 @@ while($res = mysqli_fetch_array($result))
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -196,50 +196,148 @@ while($res = mysqli_fetch_array($result))
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                
+                                 <h4 class="title">Create and Send Invoice</h4>
+                                <p class="category">Enter the details below to create the new invoice</p>
                                
-
- 
     <br/><br/>
+  
+
+
+    <form action="NewInvoce.php" method="post" name="form1">
+        
+        <table class="table table-striped" width="100%" border="0">
+             <tr> 
+                <td>Date</td>
+                <td><input type="text" name="Date" maxlength="20"></td>
+            </tr>
+            <tr> 
+            <tr> 
+                <td>Customer</td>
+               
+                <td>
+                <?php
+// With help from http://jsfiddle.net/My7D5/ & https://www.sitepoint.com/community/t/populate-dropdown-menu-from-mysql-database/6481/7
+$conn = new mysqli('127.0.0.1', 'jboyle', '', 'customersdb') 
+or die ('Cannot connect to db');
+
+    $result = $conn->query("select id, CustName from Customers");
     
-    <form name="form1" method="post" action="DevReplyMessage.php">
-        <table border="0">
-            <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
+    echo "<html>";
+    echo "<body>";
+    echo "<select class='btn btn-primary dropdown-toggle' id='mydropbox' onchange='copyValue()'>";
+
+    while ($row = $result->fetch_assoc()) {
+
+                  unset($id, $CustName);
+                  $id = $row['id'];
+                  $name = $row['CustName']; 
+                  echo '<option value="'.$id.'">'.$name.'</option>';
+                 
+}
+
+    echo "</select>";
+    echo "</body>";
+    echo "</html>";
+?><br><br></td>
+
+
+            </tr>
+            
+             <tr> 
+                <td>Names</td>
+                <td><input type="text" name="CustName"  maxlength="20" ></td>
             </tr>
             <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
-            </tr>
-            <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
+                <td>Names id</td>
+                <td><input type="text" name="Customerid" id="test" maxlength="20"></td>
             </tr>
              <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
-            
-            <tr> 
-                <td>Response</td>
-                <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
+                <td>Items</td>
+                <td><input type="text" name="Items"  id="Items" maxlength="20"></td>
             </tr>
-            
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
+             <tr> 
+                <td>Cost</td>
+                <td><input type="text" name="Quantity" id="Quantity" maxlength="20"></td>
             </tr>
-            <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+             <tr> 
+                <td>Quantity</td>
+                <td><input type="text" name="Cost" id="Cost" maxlength="20" onblur="MyValidation()"></td>
+            </tr>
+            <tr> 
+                <td>SubTotal</td>
+                <td><input type="text" name="SubTotal" id="SubTotal" maxlength="20"></td>
+            </tr>
+             <tr> 
+                <td>Price</td>
+                <td><input type="text" name="Price" id="Price" maxlength="20"></td>
+            </tr>
+             
+             <tr> 
+                <td>AmountPaid</td>
+                <td><input type="text" name="AmountPaid" id="AmountPaid" maxlength="20"></td>
+            </tr>
+             <tr> 
+                <td>AmountDue</td>
+                <td><input type="text" name="AmountDue" id="AmountDue" maxlength="20"></td>
+            </tr>
+            <tr> 
+                <td>
+                    
+                </td>
+                <td><input type="submit" name="Submit" value="Send"></td>
             </tr>
         </table>
     </form>
+    
+    
+		      <script>
+		      function MyValidation(){
+             calculate();
+              calculate1();
+              calculate2();
+                calculate3();
+                }
+</script>		      
+		      
+		     <script> calculate = function()
+{
+    var resources = document.getElementById('Cost').value;
+    var minutes = document.getElementById('Quantity').value; 
+    document.getElementById('Price').value = parseInt(resources)*parseInt(minutes);
+     
+   }</script>
+   <script> calculate1 = function()
+{
+    var resources = document.getElementById('Cost').value;
+    var minutes = document.getElementById('Quantity').value; 
+    document.getElementById('AmountDue').value = parseInt(resources)*parseInt(minutes);
+   }</script>
+   <script> calculate2 = function()
+{
+    var resources = document.getElementById('AmountDue').value;
+    var minutes = 1
+    document.getElementById('AmountDue1').value = parseInt(resources)*parseInt(minutes);
+     
+   }</script>
+    <script> calculate3 = function()
+{
+    var resources = document.getElementById('Cost').value;
+    var minutes = document.getElementById('Quantity').value; 
+    document.getElementById('SubTotal').value = parseInt(resources)*parseInt(minutes);
+     
+   }</script>
+		  
 
+		
 
-
+<script>function copyValue() {
+    var dropboxvalue = document.getElementById('mydropbox').value;
+    document.getElementById('test').value = dropboxvalue;
+    var name = document.getElementById('mydropbox').value;
+    document.getElementById('Name').value = name;
+}</script>
+<!-- End modified componenet --> 
 
 
                             </div>

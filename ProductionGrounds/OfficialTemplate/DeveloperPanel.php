@@ -78,7 +78,7 @@ echo $login_session;?></h6>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -107,13 +107,13 @@ echo $login_session;?></h6>
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
                                 <li><a href="#">Notification 4</a></li>
                                 <li><a href="#">Another notification</a></li>
                               </ul>
@@ -135,7 +135,7 @@ echo $login_session;?></h6>
         <div class="content">
            
             <div class="container-fluid">
-                <a href ='ViewDevelopers.php'><p>Change Password</p></a>	<br> <a href ='AddDeveloper.php'><p>Add New Team Member</p></a>
+                 <br>
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
                         <div class="card">
@@ -244,13 +244,25 @@ echo "$num_rows \n";
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            <i class="ti-wallet"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Followers</p>
-                                            0
+                                            <p>Unpaid Invoices</p>
+                                            
+                                            <?php
+// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM Invoices", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+//end
+?>
                                         </div>
                                     </div>
                                 </div>
