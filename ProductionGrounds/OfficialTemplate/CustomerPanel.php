@@ -121,7 +121,7 @@ mysql_select_db("customersdb", $link);
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="CustomerViewMessageResponse.php">
                         <i class="ti-user"></i>
                         <p>Support Tickets</p>
                     </a>
@@ -338,7 +338,7 @@ echo "$num_rows \n";
                         <div class="card">
                             <div class="header">
                                 <a href="ChangePassword.php">Change password</a>
-                                                       <h4 class="title">SendSupport Ticket</h4>
+                                                       <h4 class="title">Send Support Ticket</h4>
                                 <p class="category">Enter the details below to send a support ticket</p>
                                
     <br/><br/>
@@ -373,9 +373,6 @@ echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly=
             </tr>
             <tr> 
                 <td>
-                    
-                    
-                    
                 </td>
                 <td><input type="hidden" name="DeveloperResponse"  maxlength="100" readonly="readonly" placeholder="A developer will respond here..."></td>
             </tr>

@@ -194,7 +194,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
             <strong><td>Message</td></strong>
            <strong> <td>Customer ID</td></strong>
             <strong><td>Customer Name</td></strong>
-            
             <strong><td>Developer Response</td></strong>
         </tr>
         <?php 
@@ -206,7 +205,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
             echo "<td>".$res['CustomerName']."</td>";  
            
              echo "<td>".$res['DeveloperResponse']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Close Ticket</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Rate Ticket</a></button></td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerRateResponse.php?id=$res[id]\">Rate</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Rate Ticket</a></button></td>";        
         }
         ?>
     </table>
