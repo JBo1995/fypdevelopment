@@ -230,8 +230,8 @@ mysql_select_db("customersdb", $link);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Task List</h4>
-                                <p class="category">Here is a list of your current tasks</p>
+                                <h4 class="title">Invoices</h4>
+                                <p class="category">Here are your pending invoices!<br>Thank you for being a customer.</p>
                       
 
 
@@ -259,7 +259,7 @@ mysql_select_db("customersdb", $link);
             
              
             
-       echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerSeeInvoice.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complete?')\">Mark As Complete</a></button></td>"; 
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerSeeInvoice.php?id=$res[id]\">Pay Online</a></button></td>"; 
         
      //   echo "<td><input type=checkbox>Mark As Complete<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></td>";
         

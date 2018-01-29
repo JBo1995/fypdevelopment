@@ -272,10 +272,9 @@ or die ('Cannot connect to db');
                 <td>Price</td>
                 <td><input type="text" name="Price" id="Price" maxlength="20"></td>
             </tr>
-             
              <tr> 
                 <td>AmountPaid</td>
-                <td><input type="text" name="AmountPaid" id="AmountPaid" maxlength="20"></td>
+                <td><input type="text" name="AmountPaid" id="AmountPaid" maxlength="20"  onblur="MyValidation()" ></td>
             </tr>
              <tr> 
                 <td>AmountDue</td>
@@ -297,6 +296,7 @@ or die ('Cannot connect to db');
               calculate1();
               calculate2();
                 calculate3();
+                calculate4();
                 }
 </script>		      
 		      
@@ -327,9 +327,14 @@ or die ('Cannot connect to db');
     document.getElementById('SubTotal').value = parseInt(resources)*parseInt(minutes);
      
    }</script>
-		  
-
-		
+   
+   <script> calculate4 = function()
+{
+    var resources = document.getElementById('Price').value;
+    var minutes = document.getElementById('AmountPaid').value; 
+    document.getElementById('AmountDue').value = parseInt(resources) - parseInt(minutes);
+     
+   }</script>
 
 <script>function copyValue() {
     var dropboxvalue = document.getElementById('mydropbox').value;

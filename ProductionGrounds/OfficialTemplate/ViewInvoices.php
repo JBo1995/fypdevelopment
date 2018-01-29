@@ -238,7 +238,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Invoices ORDER BY id"); // using 
             
              
             
-       echo "<td><button type='button' class='btn btn-primary'><a href=\"SeeInvoice.php?id=$res[id]\" onClick=\"return confirm('Are you sure this is complete?')\">Mark as Paid</a></button></td>"; 
+       echo "<td><button type='button' class='btn btn-primary'><a href=\"InvoicePaid.php?id=$res[id]\">Mark as Paid</a></button></td>"; 
         
         echo "<td><button type='button' class='btn btn-primary'>Partially Paid<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></button></td>";
         

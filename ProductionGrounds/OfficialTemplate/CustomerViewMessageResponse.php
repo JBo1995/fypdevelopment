@@ -184,10 +184,10 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Messages</h4>
+                                <p class="category">Here is a list of messages</p><br>
                                
- <a href="AddCustomer.php">Add New Customer</a><br/><br/>
+
  
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
@@ -202,10 +202,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
             echo "<tr>";
             echo "<td>".$res['Message']."</td>";
             echo "<td>".$res['CustomerID']."</td>";
-            echo "<td>".$res['CustomerName']."</td>";  
-           
+            echo "<td>".$res['CustomerName']."</td>"; 
              echo "<td>".$res['DeveloperResponse']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerRateResponse.php?id=$res[id]\">Rate</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Rate Ticket</a></button></td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"CustomerRateResponse.php?id=$res[id]\">Rate</a></button></td>";        
         }
         ?>
     </table>

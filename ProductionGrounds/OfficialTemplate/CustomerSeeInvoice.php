@@ -226,8 +226,8 @@ while($res = mysqli_fetch_array($result))
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Invoice View</h4>
+                                <p class="category">Here is a breakdown of the services. When paying online ensure you enter the amount in the Amount Due textbox, otherwise your ivoice will be marked as partially payed.</p>
                                
 
  

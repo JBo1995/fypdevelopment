@@ -7,28 +7,13 @@ include_once("config.php");
 if(isset($_POST['update']))
 {    
     $id = $_POST['id'];
-    
-   $Message = $_POST['Message'];
-    $CustomerID = $_POST['CustomerID'];
-    $CustomerName = $_POST['CustomerName'];
-    $Subject = $_POST['Subject'];
+  
    
      $ResponseRating = $_POST['ResponseRating'];
     
     // checking empty fields
-  if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($ResponseRating)) {                
-        if(empty($Message)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($CustomerName)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
-        }
+  if(empty($ResponseRating)) {                
+        
         
          if(empty($ResponseRating)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
@@ -39,7 +24,7 @@ if(isset($_POST['update']))
         
     } else {    
         //updating the table
-        $result = mysqli_query($mysqli, "UPDATE Incidents SET Message='$Message',CustomerID='$CustomerID',CustomerName='$CustomerName',Subject='$Subject', ResponseRating='$ResponseRating' WHERE id=$id");
+        $result = mysqli_query($mysqli, "UPDATE Incidents SET ResponseRating='$ResponseRating' WHERE id=$id");
         
         //redirectig to the display page. In our case, it is index.php
         header("Location:  CustomerViewMessageResponse.php");
@@ -56,11 +41,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE id=$id");
  
 while($res = mysqli_fetch_array($result))
 {
-    $Message = $res['Message'];
-    $CustomerID = $res['CustomerID'];
-    $CustomerName = $res['CustomerName'];
-    $Subject = $res['Subject'];
-    $DeveloperResponse = $res['DeveloperResponse'];
+    
     $ResponseRating = $_POST['ResponseRating'];
 }
 //end
@@ -199,8 +180,8 @@ while($res = mysqli_fetch_array($result))
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Rate the Response</h4>
+                                <p class="category">Out of <strong>5</strong> with <strong> 1</strong> being poor and 5 being good, how to you rate the response?</p>
                                
 
  
@@ -208,23 +189,7 @@ while($res = mysqli_fetch_array($result))
     
     <form name="form1" method="post" action="CustomerRateResponse.php">
         <table border="0">
-            <tr> 
-                <td>Message</td>
-                <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
-            </tr>
-            <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
-            </tr>
-            <tr> 
-                <td>Customer Name</td>
-                <td><input type="text" readonly="readonly" name="CustomerName" value="<?php echo $CustomerName;?>"></td>
-            </tr>
-             <tr> 
-                <td>Subject</td>
-                <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
-            
+           
             
              <tr> 
                 <td>Rate The Response</td>
