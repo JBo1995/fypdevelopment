@@ -123,7 +123,7 @@ mysql_select_db("customersdb", $link);
                 <li>
                     <a href="CustomerViewMessageResponse.php">
                         <i class="ti-user"></i>
-                        <p>Support Tickets</p>
+                        <p>. Tickets</p>
                     </a>
                 </li>
                 <li>
@@ -201,10 +201,8 @@ mysql_select_db("customersdb", $link);
                                     </div>
                                     
                                     <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Tasks</p>
-                                           0 <?php
-// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                        <div class="numbers" id="test">
+                                           <?php // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
@@ -214,16 +212,29 @@ mysql_select_db("customersdb", $link);
                 $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
 if(is_resource($result) and mysql_num_rows($result)>0){
     $row = mysql_fetch_array($result);
-    echo $row["id"];
+ //   echo $row["id"];
     }
-            
+     ?>       
+                                            <p>Tasks</p>
+                                            <?php
 
-$result = mysql_query("SELECT * FROM todo WHERE Customer = ''", $link);
+
+$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$row["id"]."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
-//end
+end
 ?>
+ <?php
+
+
+$result = mysql_query("SELECT * FROM todocomplete WHERE customer = '".$row["id"]."'", $link);
+$num_rows1 = mysql_num_rows($result);
+
+
+end
+?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -233,12 +244,20 @@ echo "$num_rows \n";
                                         <i class="ti-reload"></i> Tasks developers are working on for you
                                         
                                     </div>
-                                    
+                                      <script type="text/javascript">
+                                
+                                var bool = "<?php echo $num_rows ?>"; 
+                               
+                                
+                                var bool1 = "<?php echo $num_rows1 ?>"; 
+
+                                var result = (bool1/bool * 100)
+                                
+                                document.write("Your Project is " + result + "% Complete")
+
+                                    </script>
                                 </div>
-                                <div class="progress">
-                                    
-  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-</div>
+                                
                             </div>
                         </div>
                     </div>
@@ -353,7 +372,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
     $row = mysql_fetch_array($result);
     echo $row["id"];
     }
-                ?>"   name="CustomerID"  maxlength="20" readonly="readonly">              
+                ?>"   name="CustomerID" id="CustomerID" maxlength="20" readonly="readonly">              
              
 </td>
             </tr>
