@@ -37,7 +37,7 @@ include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY Taskid"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM todo ORDER BY id"); // using mysqli_query instead
 ?>
 
 <!doctype html>

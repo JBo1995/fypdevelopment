@@ -42,6 +42,12 @@ if(isset($_POST['Submit'])) {
 //end
 ?>
 
+<?php 
+session_start();
+
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+?>
 
 
 <!doctype html>
@@ -194,7 +200,7 @@ if(isset($_POST['Submit'])) {
             </tr>
             <tr> 
                 <td>Paid</td>
-                <td><input type="text" name="Paid"></td>
+                <td><input type="text" name="Paid" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
             <tr> 
                 <td></td>

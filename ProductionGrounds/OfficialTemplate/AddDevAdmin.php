@@ -8,31 +8,36 @@ include_once("config.php");
 if(isset($_POST['Submit'])) {    
     $username = $_POST['username'];
     $password = $_POST['password'];
-     $team = $_POST['team'];
+    $team = $_POST['team'];
     
+  
         
     // checking empty fields
-    if(empty($username) || empty($password) || empty($password)) {                
+    if(empty($username) || empty($password) || empty($team) ) {                
         if(empty($username)) {
-            echo "<font color='red'>Username field is empty.</font><br/>";
+            echo "<font color='red'>Name field is empty.</font><br/>";
         }
         
         if(empty($password)) {
-            echo "<font color='red'>Password field is empty.</font><br/>";
+            echo "<font color='red'>Contact field is empty.</font><br/>";
         }
+        
         if(empty($team)) {
             echo "<font color='red'>team field is empty.</font><br/>";
         }
         
-       
+        
+         
         
         //link to the previous page
         echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO login(username,password, team) VALUES('$username','$password', '$team')");
+        $result = mysqli_query($mysqli, "INSERT INTO login (username,password,team) VALUES('$username','$password','$team')");
         echo "<br/><a>      New Team Member Added</a>";
+         header("Location: Admin.php");
+        
     }
 }
 //end
@@ -169,12 +174,12 @@ if(isset($_POST['Submit'])) {
                         <div class="card">
                             <div class="header">
                                 
-                                 <h4 class="title">Add Customer</h4>
-                                <p class="category">Enter the details below to add a new customer</p>
+                                 <h4 class="title">Add Lead Developer</h4>
+                                <p class="category">Enter the details below to add a new developer</p>
                                
     <br/><br/>
  
-    <form action="AddDeveloper.php" method="post" name="form1">
+    <form action="AddDevAdmin.php" method="post" name="form1">
         <table class="table" width="100%" border="0">
             <tr> 
                 <td>Username</td>
@@ -188,6 +193,8 @@ if(isset($_POST['Submit'])) {
                 <td>Team</td>
                 <td><input type="text" name="team" maxlength="10"></td>
             </tr>
+
+            <tr> 
                 <td></td>
                 <td><input type="submit" name="Submit" value="Add"></td>
             </tr>

@@ -25,6 +25,11 @@
 <td><input name="password" type="password" id="password"></td>
 </tr>
 <tr>
+<td>Team</td>
+<td>:</td>
+<td><input name="team" type="text" id="team"></td>
+</tr>
+<tr>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td><input type="submit" name="submit" value="Login">
@@ -45,10 +50,12 @@ session_start();
 
 $username=$_POST['username'];
 $password=$_POST['password'];
+$team =$_POST['team'];
 
 $_SESSION['login_user']=$username;
+$_SESSION['login_team']=$team;
  
-$query = mysql_query("SELECT username FROM login WHERE username='$username' and password='$password'");
+$query = mysql_query("SELECT username FROM login WHERE username='$username' and password='$password' and team='$team'");
 
  if (mysql_num_rows($query) != 0)
 {
@@ -58,7 +65,7 @@ $query = mysql_query("SELECT username FROM login WHERE username='$username' and 
 
   else
   {
-echo "<script type='text/javascript'>alert('User Name Or Password Invalid!')</script>";
+echo "<script type='text/javascript'>alert('User Name Or Password or Team Invalid!')</script>";
 }
 
 }
