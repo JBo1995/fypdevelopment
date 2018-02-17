@@ -1,42 +1,56 @@
-
 <?php
-//including the database connection file
+// including the database connection file
 // With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 
 include_once("config.php");
  
-if(isset($_POST['Submit'])) {    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-     $team = $_POST['team'];
+if(isset($_POST['update']))
+{    
+    $id = $_POST['id'];
     
-        
+   
+     $AmountDue = $_POST['AmountDue'];
+    
+    
     // checking empty fields
-    if(empty($username) || empty($password) || empty($password)) {                
-        if(empty($username)) {
-            echo "<font color='red'>Username field is empty.</font><br/>";
+            if(empty($AmountDue)) {       
+        if(empty($AmountDue)) {
+            echo "<font color='red'>Name field is empty.</font><br/>";
         }
         
-        if(empty($password)) {
-            echo "<font color='red'>Password field is empty.</font><br/>";
-        }
-        if(empty($team)) {
-            echo "<font color='red'>team field is empty.</font><br/>";
-        }
+      
         
        
         
-        //link to the previous page
-        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-    } else { 
-        // if all the fields are filled (not empty)             
-        //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO login(username,password, team) VALUES('$username','$password', '$team')");
-        echo "<br/><a>      New Team Member Added</a>";
+
+    } else {    
+        //updating the table
+        $result = mysqli_query($mysqli, "UPDATE Invoices SET AmountDue='$AmountDue' WHERE id=$id");
+        
+        //redirectig to the display page. In our case, it is index.php
+        header("Location: ViewInvoices.php");
     }
+}
+?>
+
+<?php
+//getting id from url
+$id = $_GET['id'];
+ 
+//selecting data associated with this particular id
+$result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE id=$id");
+ 
+while($res = mysqli_fetch_array($result))
+{
+    $AmountDue = $res['AmountDue'];
+  
+   
 }
 //end
 ?>
+
+
+
 
 
 
@@ -103,13 +117,13 @@ if(isset($_POST['Submit'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="#">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -168,28 +182,40 @@ if(isset($_POST['Submit'])) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                
-                                 <h4 class="title">Add Developer</h4>
-                                <p class="category">Enter the details below to add a developer to your team</p>
+                                <h4 class="title">Customer List</h4>
+                                <p class="category">Here is a list of your current customers</p>
                                
-    <br/><br/>
+
  
-    <form action="AddDeveloper.php" method="post" name="form1">
-        <table class="table" width="100%" border="0">
+    <br/><br/>
+    
+    <script>function MyValidation(){
+         //    calculate();
+    //}
+    </script>
+    
+    
+    
+ <script> calculate = function()
+//{
+  //  var resources = document.getElementById('AmountDue').value;
+    //var minutes = document.getElementById('AmountPaid').value; 
+//    document.getElementById('AmountDue').value = parseInt(resources) - parseInt(minutes);
+     
+  // }</script>
+    <form name="form1" method="post" action="PartiallyPaidInvoice.php">
+        <table border="0">
+            
             <tr> 
-                <td>Username</td>
-                <td><input type="text" name="username"  maxlength="20"></td>
-            </tr>
+        
             <tr> 
-                <td>Password</td>
-                <td><input type="text" name="password" maxlength="10"></td>
+                <td>Amount Due (How much is owed now?)</td>
+                <td><input  type="text" name="AmountDue" maxlength="10" value="<?php echo $AmountDue;?>" ></td>
             </tr>
-            <tr> 
-                <td>Team</td>
-                <td><input type="text" name="team" maxlength="10"></td>
-            </tr>
-                <td></td>
-                <td><input type="submit" name="Submit" value="Add"></td>
+            
+            <tr>
+               <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+                <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>

@@ -126,67 +126,29 @@ background:#3594D2;
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 </head>
 <body>
- <div><h2>Welcome to DevLink</h2></div>
-<br><br><br><br><br>
+ <div><h2>Welcome to DevLink</h2><br><h4>The CRM for developers, and the customers who make them.</h4></div>
+<br><br><br>
 
 
 
-<form name="" method="post" class="form-control">
-<div class="box">
-<h1>User Login </h1>
-<h6>Name</h6>
-<input name="CustName" type="text" id="CustName" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
-  <h6>Password</h6>
-<input name="TaskNum" type="password" id="TaskNum" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
-  
-<input type="submit" name="submit" value="Login" id="btn2"> 
 
+<br>
+<br>
+<h1><a href="AdminLogin.php">I'm an Admin</a></h1><br><br>
+<h1><a  href="DeveloperLogin.php">I'm a Developer </a></h1><br><br>
+<h1><a  href="CustomerLogin.php">I'm a Customer </a></h1><br><br>
 
   
-</div> <!-- End Box -->
+
   
-</form>
+
 
 
   
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 
 
-<?php
-if (isset($_POST['submit']))
-	{	  
-include("config2.php");
 
-session_start();
-
-$CustName=$_POST['CustName'];
-$TaskNum=$_POST['TaskNum'];
-
-
-
-
-
-
-$_SESSION['login_userid']=$id;
-$_SESSION['login_user']=$CustName;
-
- 
-$query = mysql_query("SELECT CustName FROM Customers WHERE CustName='$CustName' and TaskNum='$TaskNum'");
-
- if (mysql_num_rows($query) != 0)
-{
-
- echo "<script language='javascript' type='text/javascript'> location.href='CustomerPanel.php' </script>";	
-  }
-
-  else
-  {
-echo "<script type='text/javascript'>alert('User Name Or id Invalid!')</script>";
-}
-
-}
-    
-?>
 						
 			</article>								
 	</main>

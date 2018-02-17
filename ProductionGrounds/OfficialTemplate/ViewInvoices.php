@@ -70,12 +70,19 @@ if(isset($_POST['Submit'])) {
 ?>
 
 <?php
+
+session_start();
+
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+
+
 //including the database connection file
 include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM Invoices ORDER BY id"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE Team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
 ?>
 
 <!doctype html>
@@ -239,8 +246,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM Invoices ORDER BY id"); // using 
              
             
        echo "<td><button type='button' class='btn btn-primary'><a href=\"InvoicePaid.php?id=$res[id]\">Mark as Paid</a></button></td>"; 
+           echo "<td><button type='button' class='btn btn-primary'><a href=\"PartiallyPaidInvoice.php?id=$res[id]\">Partially Paid</a></button></td>"; 
         
-        echo "<td><button type='button' class='btn btn-primary'>Partially Paid<br><a href=\"CompleteTask.php?id=$res[id]\" onClick=\"return confirm('Are you sure you?')\"></a></button></td>";
+       
         
             }
         ?>

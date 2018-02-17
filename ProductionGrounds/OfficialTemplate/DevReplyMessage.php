@@ -205,13 +205,13 @@ while($res = mysqli_fetch_array($result))
     
     <form name="form1" method="post" action="DevReplyMessage.php">
         <table border="0">
-            <tr> 
+             <tr> 
                 <td>Message</td>
                 <td><input type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
             </tr>
             <tr> 
-                <td>CustomerID</td>
-                <td><input type="text" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
+                <td></td>
+                <td><input type="hidden" readonly="readonly" name="CustomerID" maxlength="10" value="<?php echo $CustomerID;?>"></td>
             </tr>
             <tr> 
                 <td>Customer Name</td>
@@ -220,17 +220,14 @@ while($res = mysqli_fetch_array($result))
              <tr> 
                 <td>Subject</td>
                 <td><input type="text" readonly="readonly" name="Subject" value="<?php echo $Subject;?>"></td>
-            </tr><br><br>
+            </tr><br><br> 
             
             <tr> 
-                <td>Response</td>
+                <td>Your Response</td>
                 <td><textarea type="text" size="100%" name="DeveloperResponse" value="<?php echo $DeveloperResponse;?>"></textarea></td>
             </tr>
             
-            <tr> 
-                <td>Rate The Response</td>
-                <td><textarea type="text" size="100%" name="ResponseRating" value="<?php echo $ResponseRating;?>"></textarea></td>
-            </tr>
+           
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
                 <td><input type="submit" name="update" value="Update"></td>

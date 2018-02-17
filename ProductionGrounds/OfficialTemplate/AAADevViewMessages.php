@@ -41,14 +41,20 @@ if(isset($_POST['Submit'])) {
 }
 //end
 ?>
+<?php 
+session_start();
 
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+
+?>
 <?php
 //including the database connection file
 include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM Incidents"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
 ?>
  
  
@@ -194,6 +200,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents"); // using mysqli_quer
             <strong><td>Customer Name</td></strong>
             <strong><td>Subject</td></strong>
             <strong><td>Developer Response</td></strong>
+             <strong><td>Rating</td></strong>
         </tr>
         <?php 
      //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
@@ -204,7 +211,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents"); // using mysqli_quer
             echo "<td>".$res['CustomerName']."</td>";  
             echo "<td>".$res['Subject']."</td>";
              echo "<td>".$res['DeveloperResponse']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Reply</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+             echo "<td>".$res['Rating']."</td>";
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Reply</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button> | <button type='button' class='btn btn-primary'><a href=\"CloseTicket.php?id=$res[id]\">Close Ticket</a></button> </td>";        
         }
         ?>
     </table>

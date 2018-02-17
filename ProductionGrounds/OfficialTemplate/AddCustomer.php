@@ -113,13 +113,13 @@ $login_sessionteam=$_SESSION['login_team'];
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -130,7 +130,7 @@ $login_sessionteam=$_SESSION['login_team'];
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+              <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -139,7 +139,7 @@ $login_sessionteam=$_SESSION['login_team'];
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -148,23 +148,17 @@ $login_sessionteam=$_SESSION['login_team'];
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -187,19 +181,19 @@ $login_sessionteam=$_SESSION['login_team'];
     <form action="CustomerList.php" method="post" name="form1">
         <table class="table" width="100%" border="0">
             <tr> 
-                <td>Name</td>
+                <td>Full Name</td>
                 <td><input type="text" name="CustName"  maxlength="20"></td>
             </tr>
             <tr> 
-                <td>Contact</td>
-                <td><input type="text" name="CustContact" maxlength="10"></td>
+                <td>Contact Number</td>
+                <td><input type="number" name="CustContact" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
             <tr> 
-                <td>Task</td>
-                <td><input type="text" name="TaskNum"  maxlength="3"></td>
+                <td>Password</td>
+                <td><input type="text" name="TaskNum"  maxlength="20"></td>
             </tr>
             <tr> 
-                <td>Paid</td>
+                <td>Team</td>
                 <td><input type="text" name="Paid" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
             <tr> 

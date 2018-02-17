@@ -110,34 +110,17 @@ mysql_select_db("customersdb", $link);
 
 ?>
 </h1>
-<a href="CustomerLogout.php"> Logout </a>
+<a href="AdminLogin.php"> Logout </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="#">
                         <i class="ti-panel"></i>
                         <p>Admin Panel</p>
                     </a>
                 </li>
-                <li>
-                    <a href="CustomerViewMessageResponse.php">
-                        <i class="ti-user"></i>
-                        <p>. Tickets</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Task List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="CustomerViewInvoices.php">
-                        <i class="ti-text"></i>
-                        <p>Invoices</p>
-                    </a>
-                </li>
+               
                 
             </ul>
     	</div>
@@ -153,32 +136,13 @@ mysql_select_db("customersdb", $link);
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Customer Panel</a>
+                    <a class="navbar-brand" href="#">Admin Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+                      
+						
                     </ul>
 
                 </div>
@@ -188,168 +152,8 @@ mysql_select_db("customersdb", $link);
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-xs-7">
-                                        <div class="numbers" id="test">
-                                           <?php // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
-                                        
-$link = mysql_connect("127.0.0.1", "jboyle", "");
-mysql_select_db("customersdb", $link);
-
-
-
-                $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
-if(is_resource($result) and mysql_num_rows($result)>0){
-    $row = mysql_fetch_array($result);
- //   echo $row["id"];
-    }
-     ?>       
-                                            <p>Tasks</p>
-                                            <?php
-
-
-$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$row["id"]."'", $link);
-$num_rows = mysql_num_rows($result);
-
-echo "$num_rows \n";
-end
-?>
- <?php
-
-
-$result = mysql_query("SELECT * FROM todocomplete WHERE customer = '".$row["id"]."'", $link);
-$num_rows1 = mysql_num_rows($result);
-
-
-end
-?>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Tasks developers are working on for you
-                                        
-                                    </div>
-                                      <script type="text/javascript">
-                                
-                                var bool = "<?php echo $num_rows ?>"; 
-                               
-                                
-                                var bool1 = "<?php echo $num_rows1 ?>"; 
-
-                                var result = (bool1/bool * 100)
-                                
-                                document.write("Your Project is " + result + "% Complete")
-
-                                    </script>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Costs</p>
-                                            -
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Open Communication Tickets</p>
-                                         
-                
-                
-                                            <?php
-// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
-                                        
-$link = mysql_connect("127.0.0.1", "jboyle", "");
-mysql_select_db("customersdb", $link);
-
-$result = mysql_query("SELECT * FROM Incidents WHERE CustomerName = '".$_SESSION['login_user']."'", $link);
-$num_rows = mysql_num_rows($result);
-
-echo "$num_rows \n";
-//end
-?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-timer"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+               
+                  
                 </div>
                 
                 <?php
@@ -395,53 +199,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login Order by team"); // using m
     
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -453,7 +211,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login Order by team"); // using m
 
                         <li>
                             <a href="http://www.creative-tim.com">
-                                DevLink<br>Customer Panel
+                                DevLink<br>Admin Panel
                             </a>
                         </li>
                         <li>

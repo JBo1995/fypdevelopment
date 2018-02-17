@@ -7,6 +7,7 @@ include_once("config.php");
  
 if(isset($_POST['Submit'])) {    
    $Date = $_POST['Date'];
+   
     $CustName = $_POST['CustName'];
      $Customerid = $_POST['Customerid'];
     $Items = $_POST['Items'];
@@ -15,9 +16,10 @@ if(isset($_POST['Submit'])) {
     $Price = $_POST['Price'];
     $AmountPaid = $_POST['AmountPaid'];
      $AmountDue = $_POST['AmountDue'];
+     $Team = $_POST['Team'];
         
        // checking empty fields
-    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue)) {                
+    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue) || empty($Team)) {                
         if(empty($Date)) {
             
             echo "<font color='red'>Date field is empty.</font><br/>";
@@ -55,18 +57,31 @@ if(isset($_POST['Submit'])) {
             
             echo "<font color='red'>Amount Due field is empty.</font><br/>";
         }
+        if(empty($Team)) {
+            
+            echo "<font color='red'>Team field is empty.</font><br/>";
+        }
        
         //link to the previous page
         echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountPaid,AmountDue) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountPaid','$AmountDue')");
+        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountPaid,AmountDue,Team) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountPaid','$AmountDue','$Team')");
         
         echo "<font color='red'>Success</font><br/>";
     }
 }
 //end
+?>
+
+
+<?php 
+session_start();
+
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -279,6 +294,10 @@ or die ('Cannot connect to db');
              <tr> 
                 <td>AmountDue</td>
                 <td><input type="text" name="AmountDue" id="AmountDue" maxlength="20"></td>
+            </tr>
+            <tr> 
+                <td>Team</td>
+                <td><input type="text" name="Team" readonly="readonly" value="<?php echo $login_sessionteam ;?>" maxlength="100"></td>
             </tr>
             <tr> 
                 <td>

@@ -41,14 +41,20 @@ if(isset($_POST['Submit'])) {
 }
 //end
 ?>
+<?php 
+session_start();
 
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+
+?>
 <?php
 //including the database connection file
 include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSION['login_team']."'");
 ?>
  
  
@@ -191,8 +197,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers ORDER BY id DESC"); // 
         <tr bgcolor='white'>
             <strong><td>Name</td></strong>
            <strong> <td>Contact</td></strong>
-            <strong><td>Tasks</td></strong>
-            <strong><td>Paid</td></strong>
+            <strong><td>Password</td></strong>
+            <strong><td>Team</td></strong>
             <strong><td>Update</td></strong>
         </tr>
         <?php 

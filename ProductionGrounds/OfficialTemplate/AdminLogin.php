@@ -1,12 +1,11 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
-<!-- Design by https://dcrazed.com/css-html-login-form-templates/ -->
 <style>
-
-
 body{
   font-family: 'Open Sans', sans-serif;
   
@@ -104,18 +103,16 @@ background:#3594D2;
 <div><h2>Welcome to DevLink</h2></div>
 <br><br><br><br>
 
-
+<!-- Design by https://dcrazed.com/css-html-login-form-templates/ -->
 
 <form name="" method="post" class="form-control">
 <div class="box">
-<h1>Developer Login </h1>
+<h1>Admin Login </h1>
 <h6>UserName</h6>
 <input name="username" type="text" id="username" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
   <h6>Password</h6>
 <input name="password" type="password" id="password" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
-<h6>Team Number</h6>
-<input name="team" type="text" id="team" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
-  
+
 <input type="submit" name="submit" value="Login" id="btn2"> 
 
 
@@ -137,12 +134,12 @@ $team =$_POST['team'];
 $_SESSION['login_user']=$username;
 $_SESSION['login_team']=$team;
  
-$query = mysql_query("SELECT username FROM login WHERE username='$username' and password='$password' and team='$team'");
+$query = mysql_query("SELECT username FROM Admin WHERE username='$username' and password='$password'");
 
  if (mysql_num_rows($query) != 0)
 {
 
- echo "<script language='javascript' type='text/javascript'> location.href='DeveloperPanel.php' </script>";	
+ echo "<script language='javascript' type='text/javascript'> location.href='Admin.php' </script>";	
   }
 
   else

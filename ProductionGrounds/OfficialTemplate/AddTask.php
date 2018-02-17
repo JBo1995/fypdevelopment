@@ -8,10 +8,11 @@ include_once("config.php");
 if(isset($_POST['Submit'])) {    
     $Task = $_POST['Task'];
     $Customer = $_POST['Customer'];
+    $Team = $_POST['Team'];
     
         
     // checking empty fields
-    if(empty($Task) || empty($Customer)) {                
+    if(empty($Task) || empty($Customer) || empty($Team)) {                
         if(empty($Task)) {
             
             echo "<font color='red'>Task field is empty.</font><br/>";
@@ -20,6 +21,9 @@ if(isset($_POST['Submit'])) {
         if(empty($Customer)) {
             echo "<font color='red'>Customer field is empty.</font><br/>";
         }
+        if(empty($Team)) {
+            echo "<font color='red'>Team field is empty.</font><br/>";
+        }
         
        
         //link to the previous page
@@ -27,14 +31,19 @@ if(isset($_POST['Submit'])) {
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer) VALUES('$Task','$Customer')");
+        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer,Team) VALUES('$Task','$Customer','$Team')");
         
         
     }
 }
 //end
 ?>
+<?php 
+session_start();
 
+$login_session=$_SESSION['login_user'];
+$login_sessionteam=$_SESSION['login_team'];
+?>
 
 
 <!doctype html>
@@ -106,7 +115,7 @@ if(isset($_POST['Submit'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>
@@ -117,7 +126,7 @@ if(isset($_POST['Submit'])) {
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -126,7 +135,7 @@ if(isset($_POST['Submit'])) {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -135,23 +144,17 @@ if(isset($_POST['Submit'])) {
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -172,6 +175,12 @@ if(isset($_POST['Submit'])) {
     <br/><br/>
   
 
+                                            <?php
+// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+?>
 
     <form action="TaskList.php" method="post" name="form1">
         
@@ -189,7 +198,7 @@ if(isset($_POST['Submit'])) {
 $conn = new mysqli('127.0.0.1', 'jboyle', '', 'customersdb') 
 or die ('Cannot connect to db');
 
-    $result = $conn->query("select id, CustName from Customers");
+    $result = $conn->query("select id, CustName from Customers Where Paid = '".$_SESSION['login_team']."' ");
     
     echo "<html>";
     echo "<body>";
@@ -201,7 +210,7 @@ or die ('Cannot connect to db');
                   $id = $row['id'];
                   $name = $row['CustName']; 
                   echo '<option value="'.$id.'">'.$name.'</option>';
-                 
+                  
 }
 
     echo "</select>";
@@ -210,6 +219,10 @@ or die ('Cannot connect to db');
 ?><br><br><input name="Customer" type="text" id="test" readonly="readonly" ></td>
 
 
+            </tr>
+            <tr> 
+                <td>Team</td>
+                <td><input type="text" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
             
             <tr> 

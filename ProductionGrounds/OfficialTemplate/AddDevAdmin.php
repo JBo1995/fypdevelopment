@@ -90,42 +90,25 @@ if(isset($_POST['Submit'])) {
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                   DevLink &trade;<br>Developer Panel
+                   DevLink &trade;<br>Admin Panel
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="DeveloperPanel.php">
+                    <a href="Admin.php">
                         <i class="ti-panel"></i>
-                        <p>Developer Panel</p>
+                        <p>Admin Panel</p>
                     </a>
                 </li>
-                <li>
-                    <a href="CustomerList.php">
-                        <i class="ti-user"></i>
-                        <p>Customer Control</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="ti-check-box"></i>
-                        <p>Task List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="ti-money"></i>
-                        <p>Invoices</p>
-                    </a>
-                </li>
+                
                 
             </ul>
     	</div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -134,26 +117,12 @@ if(isset($_POST['Submit'])) {
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" href="#">Admin Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
+                        
 						<li>
                             <a href="#">
 								<i class="ti-settings"></i>
@@ -165,7 +134,6 @@ if(isset($_POST['Submit'])) {
                 </div>
             </div>
         </nav>
-
 
         <div class="content">
             <div class="container-fluid">

@@ -55,6 +55,7 @@ $login_session=$_SESSION['login_user'];
 $login_sessionteam=$_SESSION['login_team'];
 
 echo $login_session;
+echo "<br>";
 echo $login_sessionteam;?></h6>
 
 <a href="DeveloperLogout.php"> Logout </a></h3>
@@ -117,17 +118,10 @@ echo $login_sessionteam;?></h6>
                                 <li><a href="AddDeveloper.php">Add New Team Member</a></li>
                                 <li><a href="ViewDevelopers.php">Change Password</a></li>
                                 <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-							
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -160,7 +154,7 @@ echo $login_sessionteam;?></h6>
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
-$result = mysql_query("SELECT * FROM Customers", $link);
+$result = mysql_query("SELECT * FROM Customers WHERE Paid = '".$_SESSION['login_team']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
@@ -198,7 +192,7 @@ echo "$num_rows \n";
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
-$result = mysql_query("SELECT * FROM todo", $link);
+$result = mysql_query("SELECT * FROM todo WHERE Team = '".$_SESSION['login_team']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";

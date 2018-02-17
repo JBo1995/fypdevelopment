@@ -108,14 +108,22 @@ $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
 
+
 ?>
+<?php
+                $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
+if(is_resource($result) and mysql_num_rows($result)>0){
+    $row = mysql_fetch_array($result);
+    echo $row["id"];
+    }
+    ?>
 </h1>
 <a href="CustomerLogout.php"> Logout </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="#">
                         <i class="ti-panel"></i>
                         <p>Customer Panel</p>
                     </a>
@@ -126,12 +134,7 @@ mysql_select_db("customersdb", $link);
                         <p>. Tickets</p>
                     </a>
                 </li>
-                <li>
-                    <a href="table.html">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Task List</p>
-                    </a>
-                </li>
+               
                 <li>
                     <a href="CustomerViewInvoices.php">
                         <i class="ti-text"></i>
@@ -162,15 +165,14 @@ mysql_select_db("customersdb", $link);
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                
+                                <li><a href="ChangePassword.php">Change Password</a></li>
+                                <li><a href="CustomerViewMessageResponse.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
 						<li>
@@ -251,9 +253,10 @@ end
                                 
                                 var bool1 = "<?php echo $num_rows1 ?>"; 
 
-                                var result = (bool1/bool * 100)
+                                var result = parseInt(bool) + parseInt(bool1);
+                               var dev = (parseInt(bool)/parseInt(result)) * 100
                                 
-                                document.write("Your Project is " + result + "% Complete")
+                                document.write("<p>Your Project is " + dev + "% Complete</p>")
 
                                     </script>
                                 </div>
@@ -272,8 +275,16 @@ end
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Costs</p>
-                                            -
+                                            <p>Invoices Outstanding</p>
+                                               <?php
+
+
+$result = mysql_query("SELECT * FROM Invoices WHERE Customerid = '".$row["id"]."'", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+end
+?>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +308,7 @@ end
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Open Communication Tickets</p>
+                                            <p>Open Comm Tickets</p>
                                          
                 
                 
@@ -356,8 +367,8 @@ echo "$num_rows \n";
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <a href="ChangePassword.php">Change password</a>
-                                                       <h4 class="title">Send Support Ticket</h4>
+                               
+                                                       <h4 class="title">Send Communication Ticket</h4>
                                 <p class="category">Enter the details below to send a support ticket</p>
                                
     <br/><br/>
@@ -401,70 +412,11 @@ echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly=
     </form>
 
                             </div>
-                            <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
