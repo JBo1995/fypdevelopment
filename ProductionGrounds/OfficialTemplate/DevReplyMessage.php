@@ -76,7 +76,7 @@ while($res = mysqli_fetch_array($result))
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Dashboard by Creative Tim</title>
+	<title>DevLink</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -117,7 +117,7 @@ while($res = mysqli_fetch_array($result))
                 </a>
             </div>
 
-            <ul class="nav">
+                 <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -137,7 +137,7 @@ while($res = mysqli_fetch_array($result))
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>

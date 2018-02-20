@@ -129,7 +129,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>

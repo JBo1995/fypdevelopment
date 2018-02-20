@@ -89,7 +89,7 @@ if(isset($_POST['Submit'])) {
                 </a>
             </div>
 
-            <ul class="nav">
+             <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -103,13 +103,13 @@ if(isset($_POST['Submit'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="TaskList.php">
                         <i class="ti-check-box"></i>
                         <p>Task List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>

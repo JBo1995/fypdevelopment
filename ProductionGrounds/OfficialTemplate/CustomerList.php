@@ -109,7 +109,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
                 </a>
             </div>
 
-            <ul class="nav">
+                  <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -129,7 +129,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewInvoices.php">
                         <i class="ti-money"></i>
                         <p>Invoices</p>
                     </a>

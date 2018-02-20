@@ -2,18 +2,22 @@
 //including the database connection file
 // With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
 
+
 include_once("config.php");
  
-if(isset($_POST['Submit'])) {    
+if(isset($_POST['Submit'])) {  
+  //$team = $_POST['team'];
     $Message = $_POST['Message'];
     $CustomerID = $_POST['CustomerID'];
     $CustomerName = $_POST['CustomerName'];
     $Subject = $_POST['Subject'];
-    $DeveloperResponse = $_POST['DeveloperResponse'];
+    
+    
    
         
     // checking empty fields
     if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject)) {                
+       
         if(empty($Message)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
@@ -26,11 +30,10 @@ if(isset($_POST['Submit'])) {
         if(empty($Subject)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
-        
-        
         //link to the previous page
         
     } else { 
+        
         // if all the fields are filled (not empty)             
         //insert data to database
         $result = mysqli_query($mysqli, "INSERT INTO Incidents(Message,CustomerID,CustomerName,Subject) VALUES('$Message','$CustomerID','$CustomerName','$Subject')");
@@ -38,7 +41,7 @@ if(isset($_POST['Submit'])) {
         
     }
 }
-//end
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -92,23 +95,16 @@ if(isset($_POST['Submit'])) {
                  <?php 
 session_start();
 
-
 $login_session=$_SESSION['login_user'];
 $login_sessionid=$_SESSION['login_userid'];
-
-
 
 echo $login_session ; 
 echo "<br>";
 echo $login_sessionid;
 echo "<br>";
 
-
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
-
-
-
 ?>
 <?php
                 $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
@@ -131,7 +127,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
                 <li>
                     <a href="CustomerViewMessageResponse.php">
                         <i class="ti-user"></i>
-                        <p>. Tickets</p>
+                        <p></p>Tickets</p>
                     </a>
                 </li>
                
@@ -276,14 +272,15 @@ end
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Invoices Outstanding</p>
-                                               <?php
+                                            
+                                            <?php
 
-
-$result = mysql_query("SELECT * FROM Invoices WHERE Customerid = '".$row["id"]."'", $link);
+     
+$result = mysql_query("SELECT * FROM Invoices WHERE CustName ='".$_SESSION['login_user']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
-end
+
 ?>
                                         </div>
                                     </div>
@@ -309,9 +306,6 @@ end
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Open Comm Tickets</p>
-                                         
-                
-                
                                             <?php
 // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
                                         
@@ -368,8 +362,8 @@ echo "$num_rows \n";
                         <div class="card">
                             <div class="header">
                                
-                                                       <h4 class="title">Send Communication Ticket</h4>
-                                <p class="category">Enter the details below to send a support ticket</p>
+<h4 class="title">Send Communication Ticket</h4>
+<p class="category">Enter the details below to send a support ticket</p>
                                
     <br/><br/>
  
@@ -379,19 +373,19 @@ echo "$num_rows \n";
                 <td>Customer ID</td>
                 <td><input type="text" value="<?php
                 $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
-if(is_resource($result) and mysql_num_rows($result)>0){
-    $row = mysql_fetch_array($result);
-    echo $row["id"];
-    }
+                if(is_resource($result) and mysql_num_rows($result)>0){
+                  $row = mysql_fetch_array($result);
+                 echo $row["id"];
+                   }
                 ?>"   name="CustomerID" id="CustomerID" maxlength="20" readonly="readonly">              
              
-</td>
+            </td>
             </tr>
             <tr> 
                 <td>Name</td>
                 <td><input value="<?php 
-$login_session=$_SESSION['login_user'];
-echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly="readonly"></td>
+                $login_session=$_SESSION['login_user'];
+                echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly="readonly"></td>
             </tr>
             <tr> 
                 <td>Subject</td>
