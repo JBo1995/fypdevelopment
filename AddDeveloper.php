@@ -45,9 +45,7 @@ session_start();
 $login_session=$_SESSION['login_user'];
 $login_sessionteam=$_SESSION['login_team'];
 
-echo $login_session;
-echo "<br>";
-echo $login_sessionteam;?>
+?>
 <!doctype html>
 <html lang="en">
 <head>

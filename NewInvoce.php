@@ -14,12 +14,12 @@ if(isset($_POST['Submit'])) {
      $Quantity = $_POST['Quantity'];
      $SubTotal = $_POST['SubTotal'];
     $Price = $_POST['Price'];
-    $AmountPaid = $_POST['AmountPaid'];
+    
      $AmountDue = $_POST['AmountDue'];
      $Team = $_POST['Team'];
         
        // checking empty fields
-    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountPaid) || empty($AmountDue) || empty($Team)) {                
+    if(empty($Date) || empty($CustName) || empty($Customerid) || empty($Items) || empty($Quantity) || empty($Price) || empty($SubTotal) || empty($AmountDue) || empty($Team)) {                
         if(empty($Date)) {
             
             echo "<font color='red'>Date field is empty.</font><br/>";
@@ -49,10 +49,6 @@ if(isset($_POST['Submit'])) {
             
             echo "<font color='red'>SubTotal field is empty.</font><br/>";
         }
-        if(empty($AmountPaid)) {
-            
-            echo "<font color='red'>Amount Paid field is empty.</font><br/>";
-        }
         if(empty($AmountDue)) {
             
             echo "<font color='red'>Amount Due field is empty.</font><br/>";
@@ -67,7 +63,7 @@ if(isset($_POST['Submit'])) {
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountPaid,AmountDue,Team) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountPaid','$AmountDue','$Team')");
+        $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountDue,Team) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountDue','$Team')");
         
         echo "<font color='red'>Success</font><br/>";
     }
@@ -172,7 +168,7 @@ $login_sessionteam=$_SESSION['login_team'];
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><h6><br></h6><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -180,24 +176,18 @@ $login_sessionteam=$_SESSION['login_team'];
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
+                                    <p class="notification"></p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -221,10 +211,25 @@ $login_sessionteam=$_SESSION['login_team'];
 
     <form action="NewInvoce.php" method="post" name="form1">
         
+     
+        
         <table class="table table-striped" width="100%" border="0">
              <tr> 
                 <td>Date</td>
-                <td><input type="text" name="Date" maxlength="20"></td>
+                <td><input type="text" name="Date" id="date" ><script>
+                var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+} 
+if(mm<10){
+    mm='0'+mm;
+} 
+var today = dd+'/'+mm+'/'+yyyy;
+document.getElementById("date").value = today;</script></td>
             </tr>
             <tr> 
             <tr> 
@@ -236,7 +241,7 @@ $login_sessionteam=$_SESSION['login_team'];
 $conn = new mysqli('127.0.0.1', 'jboyle', '', 'customersdb') 
 or die ('Cannot connect to db');
 
-    $result = $conn->query("select id, CustName from Customers");
+    $result = $conn->query("select id, CustName from Customers WHERE Paid = '".$_SESSION['login_team']."' ");
     
     echo "<html>";
     echo "<body>";
@@ -287,10 +292,7 @@ or die ('Cannot connect to db');
                 <td>Price</td>
                 <td><input type="text" name="Price" id="Price" maxlength="20"></td>
             </tr>
-             <tr> 
-                <td>AmountPaid</td>
-                <td><input type="text" name="AmountPaid" id="AmountPaid" maxlength="20"  onblur="MyValidation()" ></td>
-            </tr>
+             
              <tr> 
                 <td>AmountDue</td>
                 <td><input type="text" name="AmountDue" id="AmountDue" maxlength="20"></td>

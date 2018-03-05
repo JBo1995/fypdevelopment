@@ -149,7 +149,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><h6><br></h6><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -158,29 +158,22 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
             </div>
         </nav>
-
 
         <div class="content">
             <div class="container-fluid">
@@ -188,10 +181,10 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Pending Messages</h4>
+                                <p class="category">Here is a list of your current messages you must reply to</p>
                                
- <a href="AddCustomer.php">Add New Customer</a><br/><br/>
+ 
  
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>

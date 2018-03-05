@@ -140,7 +140,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -149,7 +149,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><h6><br></h6><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -158,23 +158,17 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
-									<p>Notifications</p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -197,7 +191,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
         <tr bgcolor='white'>
             <strong><td>Name</td></strong>
            <strong> <td>Contact</td></strong>
-            <strong><td>Password</td></strong>
+           
             <strong><td>Team</td></strong>
             <strong><td>Update</td></strong>
         </tr>
@@ -207,7 +201,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
             echo "<tr>";
             echo "<td>".$res['CustName']."</td>";
             echo "<td>".$res['CustContact']."</td>";
-            echo "<td>".$res['TaskNum']."</td>";  
+          
             echo "<td>".$res['Paid']."</td>";  
             echo "<td><button type='button' class='btn btn-primary'><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
         }
