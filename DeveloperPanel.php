@@ -102,7 +102,7 @@ echo $login_sessionteam;?></h6>
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel<br><h6>Dashboard</h6><br></a>
+                    <a class="navbar-brand" >Developer Panel<br><h6><br>Dashboard</h6><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -204,7 +204,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> 
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -222,14 +222,25 @@ echo "$num_rows \n";
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Messages</p>
-                                            0
+                                                                                   <?php
+// with help from http://php.net/manual/en/function.mysql-num-rows.php
+                                        
+$link = mysql_connect("127.0.0.1", "jboyle", "");
+mysql_select_db("customersdb", $link);
+
+$result = mysql_query("SELECT * FROM Incidents WHERE Team = '".$_SESSION['login_team']."'", $link);
+$num_rows = mysql_num_rows($result);
+
+echo "$num_rows \n";
+//end
+?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-eye"></i> View
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +257,7 @@ echo "$num_rows \n";
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Unpaid Invoices</p>
+                                            <p>Invoices</p>
                                             
                                             <?php
 // with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
@@ -266,7 +277,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
+
                                     </div>
                                 </div>
                             </div>
@@ -285,71 +296,55 @@ echo "$num_rows \n";
                             <div class="header">
                                 <h4 class="title">Completed Tasks</h4>
                                 
-                                <?php
-                                //// With Help and modified from http://blog.chapagain.com.np/very-simple-add-edit-delete-view-in-php-mysql/
-
-                                $link = mysql_connect("127.0.0.1", "jboyle", "");
-mysql_select_db("customersdb", $link);
-
-$result = mysql_query("SELECT * FROM todocomplete", $link);
-$num_rows = mysql_num_rows($result);
-
-echo "<br><strong>$num_rows \n </strong> Tasks have been completed ";
-
-?>
-
+                                
                   
                                 <p class="category"></p>
                             </div>
                             <div class="content">
                                 
+                                </div>
+                            <div class="content">
+                                
+                            <?php
+//including the database connection file
+include_once("config.php");
+ 
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT Task, Customer FROM todocomplete WHERE Team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
+?>
+ 
+      
+ 
+ <table class="table table-striped" width='100%' border=0>
+        <tr bgcolor='white'>
+            <strong><td>Task</td></strong>
+           <strong> <td>Customer</td></strong>
+           
+        </tr>
+        <?php 
+     //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
+       while($res = mysqli_fetch_array($result)) {         
+            echo "<tr>";
+            echo "<td>".$res['Task']."</td>";
+            echo "<td>".$res['Customer']."</td>";
+           
+           // echo "<td><button type='button' class='btn btn-primary'><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        
+        }
+        ?>
+    </table>
+     
      
                                 
                                 
-                                
-                                <?php
-$servername = "127.0.0.1";
-$username = "jboyle";
-$password = "";
-$dbname = "customersdb";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-$sql = "SELECT id, task, Customer FROM todocomplete";
-$result = $conn->query($sql);
-
-
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<br> <strong>Task:</strong> ". $row["task"]. " completed for Customer ID : " . $row["Customer"] . "<br>" ; 
-    }
-} else {
-    echo "No tasks here";
-}
-
-
-
-
-       
-$conn->close();
-//end
-?> 
-
-
+                              
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Communication tickest pending</h4>
+                                <h4 class="title">Communication Tickest Pending</h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content">
@@ -388,12 +383,12 @@ $result = mysqli_query($mysqli, "SELECT CustomerID, Subject FROM Incidents WHERE
        
 
                                 <div id="chartActivity" class="ct-chart"></div>
-
+                                
                                 <div class="footer">
                                     
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
+                                        
                                     </div>
                                 </div>
                             </div>

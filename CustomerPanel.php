@@ -11,15 +11,16 @@ if(isset($_POST['Submit'])) {
     $CustomerID = $_POST['CustomerID'];
     $CustomerName = $_POST['CustomerName'];
     $Subject = $_POST['Subject'];
+     $team = $_POST['team'];
     
     
    
         
     // checking empty fields
-    if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject)) {                
+    if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject) || empty($team)) {                
        
         if(empty($Message)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+            echo "<font color='red'>Message field is empty.</font><br/>";
         }
         if(empty($CustomerID)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
@@ -30,13 +31,16 @@ if(isset($_POST['Submit'])) {
         if(empty($Subject)) {
             echo "<font color='red'>Contact field is empty.</font><br/>";
         }
+         if(empty($team)) {
+            echo "<font color='red'>Team field is empty.</font><br/>";
+        }
         //link to the previous page
         
     } else { 
         
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO Incidents(Message,CustomerID,CustomerName,Subject) VALUES('$Message','$CustomerID','$CustomerName','$Subject')");
+        $result = mysqli_query($mysqli, "INSERT INTO Incidents(Message,CustomerID,CustomerName,Subject,team) VALUES('$Message','$CustomerID','$CustomerName','$Subject','$team')");
         echo "<script type='text/javascript'>alert('Your Support Ticket has been sent. Thank you!')</script>";
         
     }
@@ -119,7 +123,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
 
             <ul class="nav">
                 <li class="active">
-                    <a href="#">
+                    <a href="CustomerPanel.php">
                         <i class="ti-panel"></i>
                         <p>Customer Panel</p>
                     </a>
@@ -171,12 +175,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
                                
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -221,7 +220,7 @@ $result = mysql_query("SELECT * FROM todo WHERE Customer = '".$row["id"]."'", $l
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
-end
+//end
 ?>
  <?php
 
@@ -230,7 +229,7 @@ $result = mysql_query("SELECT * FROM todocomplete WHERE customer = '".$row["id"]
 $num_rows1 = mysql_num_rows($result);
 
 
-end
+//end
 ?>
 
                                         </div>
@@ -395,6 +394,17 @@ echo "$num_rows \n";
                 <td>Message</td>
                 <td><textarea type="text" name="Message"  maxlength="100"></textarea></td>
             </tr>
+            <tr> 
+                <td>Team</td>
+                <td><input type="text" value="<?php
+                $result = mysql_query("SELECT Paid FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
+                if(is_resource($result) and mysql_num_rows($result)>0){
+                  $row = mysql_fetch_array($result);
+                 echo $row["Paid"];
+                   }
+                ?>"   name="team" id="team" maxlength="20" readonly="readonly">              
+             
+            </td>
             <tr> 
                 <td>
                 </td>

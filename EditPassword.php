@@ -108,26 +108,21 @@ while($res = mysqli_fetch_array($result))
 
       <ul class="nav">
                 <li class="active">
-                    <a href="DeveloperPanel.php">
+                    <a href="CustomerPanel.php">
                         <i class="ti-panel"></i>
-                        <p>Developer Panel</p>
+                        <p>Customer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="CustomerList.php">
+                    <a href="CustomerViewMessageResponse.php">
                         <i class="ti-user"></i>
-                        <p>Customer Control</p>
+                        <p></p>Tickets</p>
                     </a>
                 </li>
+               
                 <li>
-                    <a href="TaskList.php">
-                        <i class="ti-check-box"></i>
-                        <p>Task List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="ViewInvoices.php">
-                        <i class="ti-money"></i>
+                    <a href="CustomerViewInvoices.php">
+                        <i class="ti-text"></i>
                         <p>Invoices</p>
                     </a>
                 </li>

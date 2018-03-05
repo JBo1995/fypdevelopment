@@ -9,10 +9,12 @@ if(isset($_POST['Submit'])) {
     $Task = $_POST['Task'];
     $Customer = $_POST['Customer'];
     $Team = $_POST['Team'];
+     $FullName = $_POST['FullName'];
+    
     
         
     // checking empty fields
-    if(empty($Task) || empty($Customer) || empty($Team)) {                
+    if(empty($Task) || empty($Customer) || empty($Team) || empty($FullName)) {                
         if(empty($Task)) {
             
             echo "<font color='red'>Task field is empty.</font><br/>";
@@ -21,9 +23,15 @@ if(isset($_POST['Submit'])) {
         if(empty($Customer)) {
             echo "<font color='red'>Customer field is empty.</font><br/>";
         }
+       
         if(empty($Team)) {
             echo "<font color='red'>Team field is empty.</font><br/>";
         }
+        if(empty($FullName)) {
+            echo "<font color='red'>Full Name field is empty.</font><br/>";
+        }
+        
+        
         
        
         //link to the previous page
@@ -31,7 +39,7 @@ if(isset($_POST['Submit'])) {
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer,Team) VALUES('$Task','$Customer','$Team')");
+        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer,Team,FullName) VALUES('$Task','$Customer','$Team','$FullName')");
         
         
     }
@@ -220,12 +228,16 @@ or die ('Cannot connect to db');
 
 
             </tr>
+             
             <tr> 
                 <td>Team</td>
                 <td><input type="text" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
-            
             <tr> 
+                <td>Full Name</td>
+                <td><input type="text" name="FullName" id="FullName" maxlength="20" value="test" readonly="readonly"></td>
+            </tr>
+                <tr> 
                 <td>
                     
                 </td>
