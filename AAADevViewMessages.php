@@ -205,7 +205,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
             echo "<td>".$res['Subject']."</td>";
              echo "<td>".$res['DeveloperResponse']."</td>";
              echo "<td>".$res['Rating']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Reply</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button> | <button type='button' class='btn btn-primary'><a href=\"CloseTicket.php?id=$res[id]\">Close Ticket</a></button> </td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Reply</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteMessage.php?id=$res[id]\">Delete</a></button> | <button type='button' class='btn btn-primary'><a href=\"CloseTicket.php?id=$res[id]\">Close Ticket</a></button> </td>";        
         }
         ?>
     </table>
