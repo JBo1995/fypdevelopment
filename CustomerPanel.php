@@ -147,7 +147,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -163,8 +163,8 @@ if(is_resource($result) and mysql_num_rows($result)>0){
                        
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
+                                   
+                                    <p class="notification"></p>
 									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
@@ -183,6 +183,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
         </nav>
 
 
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -192,7 +193,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
+                                            <i class="ti-check-box"></i>
                                             
                                         </div>
                                     </div>
@@ -238,27 +239,29 @@ $num_rows1 = mysql_num_rows($result);
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Tasks developers are working on for you
+                                       <p>Tasks developers are working on for you</p>
                                         
                                     </div>
-                                      <script type="text/javascript">
+                                      
+                                </div>
+                                <script type="text/javascript">
                                 
                                 var bool = "<?php echo $num_rows ?>"; 
-                               
-                                
                                 var bool1 = "<?php echo $num_rows1 ?>"; 
 
                                 var result = parseInt(bool) + parseInt(bool1);
                                var dev = (parseInt(bool)/parseInt(result)) * 100
+                                 document.write("<p>Your Project is " + dev + "% Complete</p>")
+                           
                                 
-                                document.write("<p>Your Project is " + dev + "% Complete</p>")
+                                
 
                                     </script>
-                                </div>
-                                
                             </div>
+                            
                         </div>
                     </div>
+                    
                     <div class="col-lg-3 col-sm-6">
                         <div class="card">
                             <div class="content">
@@ -287,7 +290,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +302,7 @@ echo "$num_rows \n";
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="ti-email"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
@@ -323,7 +326,7 @@ echo "$num_rows \n";
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-timer"></i>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -332,23 +335,47 @@ echo "$num_rows \n";
                     <div class="col-lg-3 col-sm-6">
                         <div class="card">
                             <div class="content">
+                                
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            
                                         </div>
                                     </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
-                                        </div>
+                                   <style>.clock {
+  font-size: 3em;
+}</style>
+                                    <div class="clock">
+                                        
+                                        <p>Time</p><script>
+                      function clock() {// We create a new Date object and assign it to a variable called "time".
+var time = new Date(),
+    
+    // Access the "getHours" method on the Date object with the dot accessor.
+    hours = time.getHours(),
+    
+    // Access the "getMinutes" method with the dot accessor.
+    minutes = time.getMinutes(),
+    
+    
+    seconds = time.getSeconds();
+
+document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+  
+  function harold(standIn) {
+    if (standIn < 10) {
+      standIn = '0' + standIn
+    }
+    return standIn;
+  }
+}
+setInterval(clock, 1000);</script>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -366,11 +393,11 @@ echo "$num_rows \n";
                                
     <br/><br/>
  
-    <form action="CustomerPanel.php" method="post" name="form1">
+    <form action="CustomerPanel.php" method="post" name="form1" class="form-group">
         <table class="table" width="100%" border="0">
             <tr> 
                 <td>Customer ID</td>
-                <td><input type="text" value="<?php
+                <td><input type="text" class="form-control" value="<?php
                 $result = mysql_query("SELECT id FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
                 if(is_resource($result) and mysql_num_rows($result)>0){
                   $row = mysql_fetch_array($result);
@@ -382,21 +409,21 @@ echo "$num_rows \n";
             </tr>
             <tr> 
                 <td>Name</td>
-                <td><input value="<?php 
+                <td><input class="form-control" value="<?php 
                 $login_session=$_SESSION['login_user'];
                 echo $login_session;?>" type="text" name="CustomerName" maxlength="10" readonly="readonly"></td>
             </tr>
             <tr> 
                 <td>Subject</td>
-                <td><input type="text" name="Subject" maxlength="10"></td>
+                <td><input type="text" class="form-control" name="Subject" maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Message</td>
-                <td><textarea type="text" name="Message"  maxlength="100"></textarea></td>
+                <td><textarea type="text" class="form-control" name="Message"  maxlength="100"></textarea></td>
             </tr>
             <tr> 
                 <td>Team</td>
-                <td><input type="text" value="<?php
+                <td><input class="form-control" type="text" value="<?php
                 $result = mysql_query("SELECT Paid FROM Customers WHERE CustName='".$_SESSION['login_user']."'") or die(mysql_error());
                 if(is_resource($result) and mysql_num_rows($result)>0){
                   $row = mysql_fetch_array($result);
@@ -411,7 +438,7 @@ echo "$num_rows \n";
                 <td><input type="hidden" name="DeveloperResponse"  maxlength="100" readonly="readonly" placeholder="A developer will respond here..."></td>
             </tr>
             <td></td>
-                <td><input type="submit" name="Submit" value="Submit"></td>
+                <td><input class="btn btn-default" type="submit" name="Submit" value="Submit"></td>
         </table>
     </form>
 

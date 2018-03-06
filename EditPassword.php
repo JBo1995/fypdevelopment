@@ -192,16 +192,16 @@ while($res = mysqli_fetch_array($result))
             
             <tr> 
                 <td></td>
-                <td><input type="hidden" name="CustName" maxlength="20"  readonly ="readonly" value="<?php echo $CustName;?>"></td>
+                <td><input class="form-control" type="hidden" name="CustName" maxlength="20"  readonly ="readonly" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input  type="text" name="TaskNum" maxlength="10"  value="<?php echo $TaskNum;?>"></td>
+                <td><input class="form-control" type="text" name="TaskNum" maxlength="10"  value="<?php echo $TaskNum;?>"></td>
             </tr>
             
             <tr>
                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+                <td><input class="btn btn-default" type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>

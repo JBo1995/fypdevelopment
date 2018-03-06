@@ -87,6 +87,12 @@ echo $login_sessionteam;?></h6>
                         <p>Invoices</p>
                     </a>
                 </li>
+                <li>
+                    <a href="AAADevViewMessages.php">
+                        <i class="ti-email"></i>
+                        <p>View Messages</p>
+                    </a>
+                </li>
                 
             </ul>
     	</div>
@@ -117,7 +123,7 @@ echo $login_sessionteam;?></h6>
                               <ul class="dropdown-menu">
                                 <li><a href="AddDeveloper.php">Add New Team Member</a></li>
                                 <li><a href="ViewDevelopers.php">Change Password</a></li>
-                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                                
                               </ul>
                         </li>

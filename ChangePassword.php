@@ -106,28 +106,23 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
                 </a>
             </div>
 
-            <ul class="nav">
+          <ul class="nav">
                 <li class="active">
-                    <a href="DeveloperPanel.php">
+                    <a href="CustomerPanel.php">
                         <i class="ti-panel"></i>
-                        <p>Developer Panel</p>
+                        <p>Customer Panel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="CustomerList.php">
+                    <a href="CustomerViewMessageResponse.php">
                         <i class="ti-user"></i>
-                        <p>Customer Control</p>
+                        <p></p>Tickets</p>
                     </a>
                 </li>
+               
                 <li>
-                    <a href="TaskList.php">
-                        <i class="ti-check-box"></i>
-                        <p>Task List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ti-money"></i>
+                    <a href="CustomerViewInvoices.php">
+                        <i class="ti-text"></i>
                         <p>Invoices</p>
                     </a>
                 </li>
@@ -137,7 +132,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -146,32 +141,26 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" href="#">Customer Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
+                                   
+                                    <p class="notification"></p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                
+                                <li><a href="ChangePassword.php">Change Password</a></li>
+                                <li><a href="CustomerViewMessageResponse.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -193,7 +182,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
             <strong><td>Name</td></strong>
-           <strong> <td>Contact</td></strong>
+           <strong> <td>Password</td></strong>
            
         </tr>
         <?php 
@@ -202,7 +191,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
             echo "<tr>";
             echo "<td>".$res['CustName']."</td>";
             echo "<td>".$res['TaskNum']."</td>";
-            echo "<td><button type='button' class='btn btn-primary'><a href=\"EditPassword.php?id=$res[id]\">Change TaskNum</a></button></td>";        
+            echo "<td><button type='button' class='btn btn-primary'><a href=\"EditPassword.php?id=$res[id]\">Change Password</a></button></td>";        
         }
         ?>
     </table>

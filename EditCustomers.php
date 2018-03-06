@@ -204,23 +204,23 @@ while($res = mysqli_fetch_array($result))
         <table border="0">
             <tr> 
                 <td>Name</td>
-                <td><input type="text" name="CustName" maxlength="20" value="<?php echo $CustName;?>"></td>
+                <td><input class="form-control" type="text" name="CustName" maxlength="20" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
                 <td>Contact</td>
-                <td><input type="text" name="CustContact" maxlength="10" value="<?php echo $CustContact;?>"></td>
+                <td><input class="form-control" type="text" name="CustContact" maxlength="10" value="<?php echo $CustContact;?>"></td>
             </tr>
             <tr> 
-                <td>Tasks</td>
-                <td><input type="text" name="TaskNum" maxlength="3" value="<?php echo $TaskNum;?>"></td>
+                <td>Password</td>
+                <td><input class="form-control" type="password" name="TaskNum" maxlength="3" value="<?php echo $TaskNum;?>"></td>
             </tr>
              <tr> 
-                <td>Paid</td>
-                <td><input type="text" name="Paid" value="<?php echo $Paid;?>"></td>
+                <td>Team</td>
+                <td><input class="form-control" type="text" name="Paid" readonly="readonly" value="<?php echo $Paid;?>"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+                <td><br><input class="btn btn-default" type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>

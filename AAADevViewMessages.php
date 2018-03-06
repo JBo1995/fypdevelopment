@@ -109,7 +109,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                 </a>
             </div>
 
-            <ul class="nav">
+           <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -134,6 +134,12 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                         <p>Invoices</p>
                     </a>
                 </li>
+                <li>
+                    <a href="AAADevViewMessages.php">
+                        <i class="ti-email"></i>
+                        <p>View Messages</p>
+                    </a>
+                </li>
                 
             </ul>
     	</div>
@@ -149,22 +155,22 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel<br><h6><br></h6><br><br></a>
+                    <a class="navbar-brand" >Developer Panel<br><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
+                                   
+                                    <p class="notification"></p>
 									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="AddDeveloper.php">Add New Team Member</a></li>
                                 <li><a href="ViewDevelopers.php">Change Password</a></li>
-                                <li><a href="AAADevViewMessages.php">View Communication Tickets</a></li>
+                               
                                
                               </ul>
                         </li>
@@ -192,7 +198,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
            <strong> <td>Customer ID</td></strong>
             <strong><td>Customer Name</td></strong>
             <strong><td>Subject</td></strong>
-            <strong><td>Developer Response</td></strong>
+            <strong><td>Response</td></strong>
              <strong><td>Rating</td></strong>
         </tr>
         <?php 
@@ -204,7 +210,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
             echo "<td>".$res['CustomerName']."</td>";  
             echo "<td>".$res['Subject']."</td>";
              echo "<td>".$res['DeveloperResponse']."</td>";
-             echo "<td>".$res['Rating']."</td>";
+             echo "<td>".$res['ResponseRating']."</td>";
             echo "<td><button type='button' class='btn btn-primary'><a href=\"DevReplyMessage.php?id=$res[id]\">Reply</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteMessage.php?id=$res[id]\">Delete</a></button> | <button type='button' class='btn btn-primary'><a href=\"CloseTicket.php?id=$res[id]\">Close Ticket</a></button> </td>";        
         }
         ?>
