@@ -126,8 +126,8 @@ background:#3594D2;
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 </head>
 <body>
- <div><h2>Welcome to DevLink</h2><br><h4>The CRM for developers, and the customers who make them.</h4></div>
-<br><br><br>
+ <div><h2>Welcome to DevLink</h2><br><h4>The CRM for developers, and the customers who make them who they are</h4></div>
+<br><br>
 
 
 
