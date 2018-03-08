@@ -369,6 +369,7 @@ $result = mysqli_query($mysqli, "SELECT CustomerID, Subject FROM Incidents WHERE
  
  <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
+            <strong><td>Customer ID</td></strong>
             <strong><td>Name</td></strong>
            <strong> <td>Contact</td></strong>
            
@@ -378,6 +379,7 @@ $result = mysqli_query($mysqli, "SELECT CustomerID, Subject FROM Incidents WHERE
        while($res = mysqli_fetch_array($result)) {         
             echo "<tr>";
             echo "<td>".$res['CustomerID']."</td>";
+            echo "<td>".$res['CustomerName']."</td>";
             echo "<td>".$res['Subject']."</td>";
            
            // echo "<td><button type='button' class='btn btn-primary'><a href=\"EditCustomers.php?id=$res[id]\">Edit</a></button> | <button type='button' class='btn btn-danger'><a href=\"DeleteCustomer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete this Customer?')\">Delete</a></button></td>";        

@@ -238,17 +238,17 @@ or die ('Cannot connect to db');
              
             <tr> 
                 <td>Team</td>
-                <td><input type="text" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
+                <td><input type="text" class="form-control" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
             <tr> 
                 <td>Full Name</td>
-                <td><input type="text" name="FullName" id="FullName" maxlength="20" value="test" readonly="readonly"></td>
+                <td><input type="text" class="form-control" name="FullName" id="FullName" maxlength="20" value="test" readonly="readonly"></td>
             </tr>
                 <tr> 
                 <td>
                     
                 </td>
-                <td><input type="submit" name="Submit" value="Add"></td>
+                <td><input type="submit" class="btn btn-default" name="Submit" value="Add"></td>
             </tr>
         </table>
     </form>

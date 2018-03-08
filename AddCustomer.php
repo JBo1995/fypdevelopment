@@ -188,23 +188,23 @@ $login_sessionteam=$_SESSION['login_team'];
         <table class="table" width="100%" border="0">
             <tr> 
                 <td>Full Name</td>
-                <td><input type="text" name="CustName"  maxlength="20"></td>
+                <td><input type="text" class="form-control" name="CustName"  maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Contact Number</td>
-                <td><input type="number" name="CustContact" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
+                <td><input type="number" class="form-control" name="CustContact" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input type="text" name="TaskNum"  maxlength="20"></td>
+                <td><input type="text" class="form-control" name="TaskNum"  maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Team</td>
-                <td><input type="text" name="Paid" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
+                <td><input type="text" class="form-control" name="Paid" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
             <tr> 
                 <td></td>
-                <td><input type="submit" name="Submit" value="Add"></td>
+                <td><input type="submit" class="btn btn-default" name="Submit" value="Add"></td>
             </tr>
         </table>
     </form>
