@@ -61,6 +61,7 @@ if(isset($_POST['update']))
         }
        
         header("Location: ViewInvoices.php");
+        
         //link to the previous page
     } else {    
         //updating the table

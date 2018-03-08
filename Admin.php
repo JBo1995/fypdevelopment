@@ -11,6 +11,7 @@ if(isset($_POST['Submit'])) {
     $Subject = $_POST['Subject'];
     $DeveloperResponse = $_POST['DeveloperResponse'];
    
+  
         
     // checking empty fields
     if(empty($Message) || empty( $CustomerID) || empty($CustomerName) || empty($Subject)) {                

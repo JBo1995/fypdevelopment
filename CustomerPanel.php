@@ -246,11 +246,25 @@ $num_rows1 = mysql_num_rows($result);
                                 </div>
                                 <script type="text/javascript">
                                 
+                       
+                                
                                 var bool = "<?php echo $num_rows ?>"; 
                                 var bool1 = "<?php echo $num_rows1 ?>"; 
 
                                 var result = parseInt(bool) + parseInt(bool1);
+                                
                                var dev = (parseInt(bool)/parseInt(result)) * 100
+                               if (isNaN(dev)) dev = 0;
+                               
+                        //       if(parseInt(bool1) > 0 && (parseInt(bool) == 0)) {
+                        //       var dev = 100;
+                        //       }
+                               
+                               if(parseInt(bool1)==0){
+                                 var dev = 0;
+                               }
+                                
+                               
                                  document.write("<p>Your Project is " + dev + "% Complete</p>")
                            
                                 

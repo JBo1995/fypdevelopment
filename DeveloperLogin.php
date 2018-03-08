@@ -114,7 +114,7 @@ background:#3594D2;
   <h6>Password</h6>
 <input name="password" type="password" id="password" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
 <h6>Team Number</h6>
-<input name="team" type="text" id="team" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
+<input name="team" type="text" id="team" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"/>
   
 <input type="submit" name="submit" value="Login" id="btn2"> 
 

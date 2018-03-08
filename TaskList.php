@@ -130,6 +130,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM todo WHERE Team = '".$_SESSION['l
                     </a>
                 </li>
                 
+                
             </ul>
     	</div>
     </div>

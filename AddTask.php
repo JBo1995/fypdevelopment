@@ -240,7 +240,10 @@ or die ('Cannot connect to db');
                 <td>Team</td>
                 <td><input type="text" class="form-control" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
-            
+             <tr> 
+                <td>Full Name</td>
+                <td><input type="text" class="form-control" name="FullName"  maxlength="20" ></td>
+            </tr>
                 <tr> 
                 <td>
                     
@@ -249,7 +252,6 @@ or die ('Cannot connect to db');
             </tr>
         </table>
     </form>
-    
     
 
 <script>function copyValue() {

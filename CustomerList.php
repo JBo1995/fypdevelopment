@@ -195,6 +195,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
  
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
+             <strong><td>ID</td></strong>
             <strong><td>Name</td></strong>
            <strong> <td>Contact</td></strong>
            
@@ -205,6 +206,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers WHERE Paid = '".$_SESSI
      //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
        while($res = mysqli_fetch_array($result)) {         
             echo "<tr>";
+            echo "<td>".$res['id']."</td>";
             echo "<td>".$res['CustName']."</td>";
             echo "<td>".$res['CustContact']."</td>";
           

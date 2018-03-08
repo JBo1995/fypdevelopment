@@ -65,7 +65,7 @@ if(isset($_POST['Submit'])) {
         //insert data to database
         $result = mysqli_query($mysqli, "INSERT INTO Invoices(Date,CustName,Customerid,Items,Quantity,Price,SubTotal,AmountDue,Team) VALUES('$Date','$CustName','$Customerid','$Items','$Quantity','$Price','$SubTotal','$AmountDue','$Team')");
         
-        echo "<font color='red'>Success</font><br/>";
+       echo "<script type='text/javascript'>alert('Your Invoice has been sent. Thank you!')</script>";
     }
 }
 //end

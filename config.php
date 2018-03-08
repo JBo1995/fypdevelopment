@@ -1,10 +1,4 @@
 
-<?php 
-$conn = new mysqli("5.9.144.131","root","Tangoronan123!","customersdb");
-if($conn->connect_error) {
-  die($conn->connect_error);
-}
-?>
 <?php
 /*
 // mysql_connect("database-host", "username", "password")
@@ -29,11 +23,11 @@ $conn = mysql_connect("localhost","root","root")
 
 
 
-//$databaseHost = '127.0.0.1';
-//$databaseName = 'customersdb';
-//$databaseUsername = 'jboyle';
-//$databasePassword = '';
+$databaseHost = '127.0.0.1';
+$databaseName = 'customersdb';
+$databaseUsername = 'jboyle';
+$databasePassword = '';
  
-//$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
 
 ?>
