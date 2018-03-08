@@ -59,6 +59,14 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
 <!doctype html>
 <html lang="en">
 <head>
+    <style>table {
+    table-layout:fixed;
+   
+    overflow:hidden; 
+    text-overflow:ellipsis;width:100%;
+    word-wrap:break-word;
+
+}</style>
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
@@ -100,7 +108,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                   DevLink &trade;<br>Developer Panel
+                   DevLink &trade;<br>Customer Panel
                 </a>
             </div>
 
@@ -177,9 +185,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents where CustomerName = '"
                                
 
  
-   <table class="table table-striped" width='100%' border=0>
+   <table class="table table-striped" style="width:100%" border=0>
         <tr bgcolor='white'>
-            <strong><td>Message</td></strong>
+            <strong><td style="width:40%">Message</td></strong>
            <strong> <td>Customer ID</td></strong>
             <strong><td>Customer Name</td></strong>
             <strong><td>Developer Response</td></strong>

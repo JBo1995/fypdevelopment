@@ -299,7 +299,7 @@ echo "$num_rows \n";
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Completed Tasks</h4>
+                                <h4 class="title">Recently Completed Tasks</h4>
                                 
                                 
                   
@@ -316,7 +316,7 @@ include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT Task, Customer FROM todocomplete WHERE Team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT Task, Customer FROM todocomplete WHERE Team = '".$_SESSION['login_team']."'LIMIT 10"); // using mysqli_query instead
 ?>
  
       
@@ -361,23 +361,23 @@ include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT CustomerID, Subject FROM Incidents WHERE team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSION['login_team']."'"); // using mysqli_query instead
 ?>
  
       
  
  <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
-            <strong><td>Customer ID</td></strong>
+            <strong><td>Ticket ID</td></strong>
             <strong><td>Name</td></strong>
-           <strong> <td>Contact</td></strong>
+           <strong> <td>Subject</td></strong>
            
         </tr>
         <?php 
      //  while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
        while($res = mysqli_fetch_array($result)) {         
             echo "<tr>";
-            echo "<td>".$res['CustomerID']."</td>";
+            echo "<td>".$res['id']."</td>";
             echo "<td>".$res['CustomerName']."</td>";
             echo "<td>".$res['Subject']."</td>";
            

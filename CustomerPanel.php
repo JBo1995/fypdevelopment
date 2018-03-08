@@ -23,13 +23,13 @@ if(isset($_POST['Submit'])) {
             echo "<font color='red'>Message field is empty.</font><br/>";
         }
         if(empty($CustomerID)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+            echo "<font color='red'>ID field is empty.</font><br/>";
         }
         if(empty($CustomerName)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
         if(empty($Subject)) {
-            echo "<font color='red'>Contact field is empty.</font><br/>";
+            echo "<font color='red'>Subject field is empty.</font><br/>";
         }
          if(empty($team)) {
             echo "<font color='red'>Team field is empty.</font><br/>";
@@ -433,7 +433,7 @@ setInterval(clock, 1000);</script>
             </tr>
             <tr> 
                 <td>Message</td>
-                <td><textarea type="text" class="form-control" name="Message"  maxlength="100"></textarea></td>
+                <td><textarea type="text" class="form-control" name="Message"  maxlength="300"></textarea></td>
             </tr>
             <tr> 
                 <td>Team</td>
