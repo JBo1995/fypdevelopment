@@ -209,7 +209,7 @@ while($res = mysqli_fetch_array($result))
         
             <tr> 
                 <td>Amount Due (How much is owed now?)</td>
-                <td><input  type="text" name="AmountDue" maxlength="10" value="<?php echo $AmountDue;?>" ></td>
+                <td><input class="form-control" type="text" name="AmountDue" maxlength="10" value="<?php echo $AmountDue;?>" ></td>
             </tr>
             
             <tr>

@@ -222,7 +222,7 @@ $login_sessionteam=$_SESSION['login_team'];
         <table class="table table-striped" width="100%" border="0">
              <tr> 
                 <td>Date</td>
-                <td><input type="text" name="Date" id="date" ><script>
+                <td><input class="form-control" type="text" name="Date" id="date" ><script>
                 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -272,40 +272,40 @@ or die ('Cannot connect to db');
             
              <tr> 
                 <td>Names</td>
-                <td><input type="text" name="CustName"  maxlength="20" ></td>
+                <td><input type="text" class="form-control" name="CustName"  maxlength="20" ></td>
             </tr>
             <tr> 
                 <td>Names id</td>
-                <td><input type="text" name="Customerid" id="test" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Customerid" id="test" maxlength="20"></td>
             </tr>
              <tr> 
                 <td>Items</td>
-                <td><input type="text" name="Items"  id="Items" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Items"  id="Items" maxlength="20"></td>
             </tr>
              <tr> 
                 <td>Cost</td>
-                <td><input type="text" name="Quantity" id="Quantity" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Quantity" id="Quantity" maxlength="20"></td>
             </tr>
              <tr> 
                 <td>Quantity</td>
-                <td><input type="text" name="Cost" id="Cost" maxlength="20" onblur="MyValidation()"></td>
+                <td><input type="text" class="form-control" name="Cost" id="Cost" maxlength="20" onblur="MyValidation()"></td>
             </tr>
             <tr> 
                 <td>SubTotal</td>
-                <td><input type="text" name="SubTotal" id="SubTotal" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="SubTotal" id="SubTotal" maxlength="20"></td>
             </tr>
              <tr> 
                 <td>Price</td>
-                <td><input type="text" name="Price" id="Price" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Price" id="Price" maxlength="20"></td>
             </tr>
              
              <tr> 
                 <td>AmountDue</td>
-                <td><input type="text" name="AmountDue" id="AmountDue" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="AmountDue" id="AmountDue" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
             <tr> 
                 <td>Team</td>
-                <td><input type="text" name="Team" readonly="readonly" value="<?php echo $login_sessionteam ;?>" maxlength="100"></td>
+                <td><input type="text"  class="form-control" name="Team" readonly="readonly" value="<?php echo $login_sessionteam ;?>" maxlength="100"></td>
             </tr>
             <tr> 
                 <td>

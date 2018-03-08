@@ -134,7 +134,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE Team = '".$_SESSIO
                 </a>
             </div>
 
-                <ul class="nav">
+            <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -159,6 +159,12 @@ $result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE Team = '".$_SESSIO
                         <p>Invoices</p>
                     </a>
                 </li>
+                <li>
+                    <a href="AAADevViewMessages.php">
+                        <i class="ti-email"></i>
+                        <p>View Messages</p>
+                    </a>
+                </li>
                 
             </ul>
     	</div>
@@ -174,37 +180,32 @@ $result = mysqli_query($mysqli, "SELECT * FROM Invoices WHERE Team = '".$_SESSIO
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" >Developer Panel<br><br><br></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
+                                   
+                                    <p class="notification"></p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="AddDeveloper.php">Add New Team Member</a></li>
+                                <li><a href="ViewDevelopers.php">Change Password</a></li>
+                               
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
             </div>
         </nav>
+
 
 
         <div class="content">

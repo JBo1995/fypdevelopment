@@ -202,7 +202,7 @@ mysql_select_db("customersdb", $link);
         <table class="table table-striped" width="100%" border="0">
             <tr> 
                 <td>Task</td>
-                <td><input type="text" name="Task" maxlength="20"></td>
+                <td><input  class="form-control" type="text" name="Task" maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Customer</td>
@@ -231,7 +231,7 @@ or die ('Cannot connect to db');
     echo "</select>";
     echo "</body>";
     echo "</html>";
-?><br><br><input name="Customer" type="text" id="test" readonly="readonly" ></td>
+?><br><br><input  class="form-control" name="Customer" type="text" id="test" readonly="readonly" ></td>
 
 
             </tr>
@@ -240,10 +240,7 @@ or die ('Cannot connect to db');
                 <td>Team</td>
                 <td><input type="text" class="form-control" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
-            <tr> 
-                <td>Full Name</td>
-                <td><input type="text" class="form-control" name="FullName" id="FullName" maxlength="20" value="test" readonly="readonly"></td>
-            </tr>
+            
                 <tr> 
                 <td>
                     
