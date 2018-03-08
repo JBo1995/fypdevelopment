@@ -136,7 +136,9 @@ background:#3594D2;
 <br>
 <h1><a href="AdminLogin.php">I'm an Admin</a></h1><br><br>
 <h1><a  href="DeveloperLogin.php">I'm a Developer </a></h1><br><br>
-<h1><a  href="CustomerLogin.php">I'm a Customer </a></h1><br><br>
+<h1><a  href="CustomerLogin.php">I'm a Customer </a></h1><br><br><br>
+
+<h3>To request a demo contact admin@devlink.ie</h3>
 
   
 

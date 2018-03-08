@@ -251,7 +251,7 @@ or die ('Cannot connect to db');
     
     echo "<html>";
     echo "<body>";
-    echo "<select class='btn btn-primary dropdown-toggle' id='mydropbox' onchange='copyValue()'>";
+    echo "<select class='btn btn-primary dropdown-toggle' id='mydropbox' onchange='Go(this.value);' >";
 
     while ($row = $result->fetch_assoc()) {
 
@@ -267,15 +267,27 @@ or die ('Cannot connect to db');
     echo "</html>";
 ?><br><br></td>
 
+<script>function Go(value) {
+  myFunction(value);
+   copyValue(value);
+}</script>
+<script>
+function myFunction() {
+   var sel = document.getElementById("mydropbox");
+var text= sel.options[sel.selectedIndex].text;
+
+document.getElementById('CustName').value = text;
+}
+</script>
 
             </tr>
             
              <tr> 
                 <td>Names</td>
-                <td><input type="text" class="form-control" name="CustName"  maxlength="20" ></td>
+                <td><input type="text" class="form-control" id="CustName" name="CustName"  maxlength="20" ></td>
             </tr>
             <tr> 
-                <td>Names id</td>
+                <td>Names ID</td>
                 <td><input type="text" class="form-control" name="Customerid" id="test" maxlength="20"></td>
             </tr>
              <tr> 

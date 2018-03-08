@@ -111,7 +111,7 @@ mysql_select_db("customersdb", $link);
 
 ?>
 </h1>
-<a href="AdminLogin.php"> Logout </a>
+<a href="AdminLogout.php"> Logout </a>
             </div>
 
             <ul class="nav">

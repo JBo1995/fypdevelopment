@@ -218,12 +218,16 @@ or die ('Cannot connect to db');
     echo "<html>";
     echo "<body>";
     echo "<select class='btn btn-primary dropdown-toggle'  id='mydropbox' onchange='copyValue()'>";
+    
+     echo '<option value="">Select Customer</option>';
 
     while ($row = $result->fetch_assoc()) {
-
+        
+                    
                   unset($id, $CustName);
                   $id = $row['id'];
                   $name = $row['CustName']; 
+                 
                   echo '<option value="'.$id.'">'.$name.'</option>';
                   
 }
@@ -232,17 +236,14 @@ or die ('Cannot connect to db');
     echo "</body>";
     echo "</html>";
 ?><br><br><input  class="form-control" name="Customer" type="text" id="test" readonly="readonly" ></td>
-
-
             </tr>
-             
             <tr> 
                 <td>Team</td>
                 <td><input type="text" class="form-control" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
              <tr> 
-                <td>Full Name</td>
-                <td><input type="text" class="form-control" name="FullName"  maxlength="20" ></td>
+                <td></td>
+                <td><input type="hidden" class="form-control" name="FullName"  maxlength="20" ></td>
             </tr>
                 <tr> 
                 <td>

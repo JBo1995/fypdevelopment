@@ -71,12 +71,20 @@ if(isset($_POST['Submit'])) {
 //end
 ?>
 
+
+
+
+
 <?php
 //including the database connection file
 include_once("config.php");
 session_start();
 
 $login_session=$_SESSION['login_user'];
+
+
+              
+    
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
