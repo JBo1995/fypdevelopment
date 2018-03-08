@@ -185,8 +185,8 @@ while($res = mysqli_fetch_array($result))
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Password Change</h4>
+                                <p class="category"></p>
                                
 
  
@@ -197,16 +197,16 @@ while($res = mysqli_fetch_array($result))
             
             <tr> 
                 <td></td>
-                <td><input type="hidden" name="username" maxlength="20"  readonly ="readonly" value="<?php echo $username;?>"></td>
+                <td><input type="hidden" class="form-control" name="username" maxlength="20"  readonly ="readonly" value="<?php echo $username;?>"></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input  type="text" name="password" maxlength="10"  value="<?php echo $password;?>"></td>
+                <td><input  type="text" class="form-control" name="password" maxlength="10"  value="<?php echo $password;?>"></td>
             </tr>
             
             <tr>
                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+                <td><input  class="btn btn-default" type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>

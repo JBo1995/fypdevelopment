@@ -174,10 +174,10 @@ $result = mysqli_query($mysqli, "SELECT * FROM Customers where CustName = '".$_S
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Change Password</h4>
+                                <p class="category">Change your password below</p><br>
                                
- <a href="AddCustomer.php">Add New Customer</a><br/><br/>
+
  
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>

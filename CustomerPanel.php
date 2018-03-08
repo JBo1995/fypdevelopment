@@ -217,7 +217,7 @@ if(is_resource($result) and mysql_num_rows($result)>0){
                                             <?php
 
 
-$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$row["id"]."'", $link);
+$result = mysql_query("SELECT * FROM todo WHERE Customer = '".$_SESSION['login_user']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";
@@ -226,7 +226,7 @@ echo "$num_rows \n";
  <?php
 
 
-$result = mysql_query("SELECT * FROM todocomplete WHERE customer = '".$row["id"]."'", $link);
+$result = mysql_query("SELECT * FROM todocomplete WHERE customer = '".$_SESSION['login_user']."'", $link);
 $num_rows1 = mysql_num_rows($result);
 
 
@@ -239,7 +239,7 @@ $num_rows1 = mysql_num_rows($result);
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                       <p>Tasks developers are working on for you</p>
+                                       <p>Tasks developers are working on</p>
                                         
                                     </div>
                                       
@@ -253,7 +253,7 @@ $num_rows1 = mysql_num_rows($result);
 
                                 var result = parseInt(bool) + parseInt(bool1);
                                 
-                               var dev = (parseInt(bool)/parseInt(result)) * 100
+                               var dev = (parseInt(bool1)/parseInt(result)) * 100
                                if (isNaN(dev)) dev = 0;
                                
                         //       if(parseInt(bool1) > 0 && (parseInt(bool) == 0)) {

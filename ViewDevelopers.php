@@ -105,7 +105,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login where username = '".$_SESSI
                 </a>
             </div>
 
-            <ul class="nav">
+           <ul class="nav">
                 <li class="active">
                     <a href="DeveloperPanel.php">
                         <i class="ti-panel"></i>
@@ -177,22 +177,21 @@ $result = mysqli_query($mysqli, "SELECT * FROM login where username = '".$_SESSI
             </div>
         </nav>
 
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Customer List</h4>
-                                <p class="category">Here is a list of your current customers</p>
+                                <h4 class="title">Password Change</h4>
+                                <p class="category">Change your password below</p>
                                
- <a href="AddCustomer.php">Add New Customer</a><br/><br/>
+ 
  
    <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
             <strong><td>Name</td></strong>
-           <strong> <td>Contact</td></strong>
+           <strong> <td>Password</td></strong>
            
         </tr>
         <?php 

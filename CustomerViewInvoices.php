@@ -146,10 +146,6 @@ $login_sessionid=$_SESSION['login_userid'];
 
 
 
-echo $login_session ; 
-echo "<br>";
-echo $login_sessionid;
-echo "<br>";
 
 
 $link = mysql_connect("127.0.0.1", "jboyle", "");

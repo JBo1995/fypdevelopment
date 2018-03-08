@@ -182,7 +182,7 @@ while($res = mysqli_fetch_array($result))
             
              <tr> 
                 <td>Rate The Response &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><br>
-                <td ><select name="ResponseRating">
+                <td ><select class="btn btn-secondary dropdown-toggle"  name="ResponseRating">
     <option value="1" class="dropdown-item">1</option>
     <option value="2" class="dropdown-item">2</option>
     <option value="3" class="dropdown-item">3</option>
@@ -193,7 +193,7 @@ while($res = mysqli_fetch_array($result))
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><br><input type="submit" name="update" value="Update"></td>
+                <td><br><input type="submit" class="btn btn-default" name="update" value="Update"></td>
             </tr>
         </table>
     </form>

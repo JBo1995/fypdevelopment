@@ -227,38 +227,39 @@ while($res = mysqli_fetch_array($result))
         <table border="0">
             <tr> 
                 <td>Date</td>
-                <td><input  class="form-control" type="text" name="Date" maxlength="20" value="<?php echo $Date;?>"></td>
+                <td><input  class="form-control" type="text" name="Date" maxlength="20" readonly="readonly" value="<?php echo $Date;?>"></td>
             </tr>
             <tr> 
                 <td>Customer Name </td>
-                <td><input type="text"  class="form-control" name="CustName" maxlength="10" value="<?php echo $CustName;?>"></td>
+                <td><input type="text"  class="form-control" name="CustName" maxlength="10" readonly="readonly" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
                 <td>Customer ID</td>
-                <td><input type="text"  class="form-control" name="Customerid" maxlength="3" value="<?php echo $Customerid;?>"></td>
+                <td><input type="text"  class="form-control" name="Customerid" maxlength="3" readonly="readonly" value="<?php echo $Customerid;?>"></td>
             </tr>
              <tr> 
                 <td>Items</td>
-                <td><input type="text"  class="form-control" name="Items" value="<?php echo $Items;?>"></td>
+                <td><input type="text"  class="form-control" name="Items" readonly="readonly" value="<?php echo $Items;?>"></td>
             </tr>
             <tr> 
                 <td>Quantity</td>
-                <td><input type="text"  class="form-control" name="Quantity" maxlength="20" value="<?php echo $Quantity;?>"></td>
+                <td><input type="text"  class="form-control" name="Quantity" readonly="readonly" maxlength="20" value="<?php echo $Quantity;?>"></td>
             </tr>
             <tr> 
                 <td>SubTotal</td>
-                <td><input type="text"  class="form-control" name="SubTotal" maxlength="20" value="<?php echo $SubTotal;?>"></td>
+                <td><input type="text"  class="form-control" name="SubTotal" readonly="readonly" maxlength="20" value="<?php echo $SubTotal;?>"></td>
             </tr>
             <tr> 
                 <td>Price</td>
-                <td><input type="text"  class="form-control" name="Price" maxlength="20" value="<?php echo $Price;?>"></td>
+                <td><input type="text"  class="form-control" name="Price"  readonly="readonly" maxlength="20" value="<?php echo $Price;?>"></td>
             </tr>
             <tr> 
                 <td>Amount Due</td>
-                <td><input type="text"  class="form-control" name="AmountDue" maxlength="20" value="<?php echo $AmountDue;?>"></td>
+                <td><input type="text"  class="form-control" name="AmountDue" readonly="readonly" maxlength="20" value="<?php echo $AmountDue;?>"></td>
             </tr>
+           
             <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td><h4>Note : Vat (23%) has been included in this price</h4>
             
             </tr>
         </table>
@@ -274,7 +275,7 @@ while($res = mysqli_fetch_array($result))
   <input type="hidden" name="cmd" value="_xclick">
 
   <!-- Specify details about the item that buyers will purchase. -->
-  <input type="hidden" name="item_name" value="Invoice for Development Services">
+  <input type="hidden" name="item_name" value="Payment for Development Services">
   <input type="hidden" name="amount" >
   <input type="hidden" name="currency_code" value="EUR">
 
