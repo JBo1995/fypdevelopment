@@ -264,14 +264,13 @@ echo "$num_rows \n";
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Invoices</p>
-                                            
                                             <?php
-// with help and modified from http://php.net/manual/en/function.mysql-num-rows.php
+                                            // with help from http://php.net/manual/en/function.mysql-num-rows.php
                                         
 $link = mysql_connect("127.0.0.1", "jboyle", "");
 mysql_select_db("customersdb", $link);
 
-$result = mysql_query("SELECT * FROM Invoices", $link);
+$result = mysql_query("SELECT * FROM Invoices WHERE Team = '".$_SESSION['login_team']."'", $link);
 $num_rows = mysql_num_rows($result);
 
 echo "$num_rows \n";

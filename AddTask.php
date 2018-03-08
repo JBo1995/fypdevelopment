@@ -9,12 +9,13 @@ if(isset($_POST['Submit'])) {
     $Task = $_POST['Task'];
     $Customer = $_POST['Customer'];
     $Team = $_POST['Team'];
-     $FullName = $_POST['FullName'];
+    $Team2 = $_POST['Team2'];
+    $FullName = $_POST['FullName'];
     
     
         
     // checking empty fields
-    if(empty($Task) || empty($Customer) || empty($Team) || empty($FullName)) {                
+    if(empty($Task) || empty($Customer) || empty($Team) || empty($Team2) || empty($FullName)) {                
         if(empty($Task)) {
             
             echo "<font color='red'>Task field is empty.</font><br/>";
@@ -26,6 +27,9 @@ if(isset($_POST['Submit'])) {
        
         if(empty($Team)) {
             echo "<font color='red'>Team field is empty.</font><br/>";
+        }
+         if(empty($Team)) {
+            echo "<font color='red'>Team2 field is empty.</font><br/>";
         }
         if(empty($FullName)) {
             echo "<font color='red'>Full Name field is empty.</font><br/>";
@@ -39,7 +43,7 @@ if(isset($_POST['Submit'])) {
     } else { 
         // if all the fields are filled (not empty)             
         //insert data to database
-        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer,Team,FullName) VALUES('$Task','$Customer','$Team','$FullName')");
+        $result = mysqli_query($mysqli, "INSERT INTO todo(Task,Customer,Team,Team2,FullName) VALUES('$Task','$Customer','$Team','$Team2','$FullName')");
         
         
     }
@@ -217,7 +221,7 @@ or die ('Cannot connect to db');
     
     echo "<html>";
     echo "<body>";
-    echo "<select class='btn btn-primary dropdown-toggle'  id='mydropbox' onchange='copyValue()'>";
+    echo "<select class='btn btn-primary dropdown-toggle'  id='mydropbox' onchange='myFunction(value)'>";
     
      echo '<option value="">Select Customer</option>';
 
@@ -238,13 +242,24 @@ or die ('Cannot connect to db');
 ?><br><br><input  class="form-control" name="Customer" type="text" id="test" readonly="readonly" ></td>
             </tr>
             <tr> 
+            <script>function Go(value) {
+  myFunction(value);
+   copyValue(value);
+}</script>
+<script>
+function myFunction() {
+   var sel = document.getElementById("mydropbox");
+var text= sel.options[sel.selectedIndex].text;
+
+document.getElementById('test').value = text;
+}
+</script>
+            
+            
                 <td>Team</td>
                 <td><input type="text" class="form-control" name="Team" maxlength="20" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
-             <tr> 
-                <td></td>
-                <td><input type="hidden" class="form-control" name="FullName"  maxlength="20" ></td>
-            </tr>
+           
                 <tr> 
                 <td>
                     

@@ -252,7 +252,7 @@ or die ('Cannot connect to db');
     echo "<html>";
     echo "<body>";
     echo "<select class='btn btn-primary dropdown-toggle' id='mydropbox' onchange='Go(this.value);' >";
-
+ echo '<option value="">Select Customer</option>';
     while ($row = $result->fetch_assoc()) {
 
                   unset($id, $CustName);

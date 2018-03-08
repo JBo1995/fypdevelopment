@@ -148,7 +148,7 @@ while($res = mysqli_fetch_array($result))
                 </a>
             </div>
 
-           <ul class="nav">
+            <ul class="nav">
                 <li class="active">
                     <a href="CustomerPanel.php">
                         <i class="ti-panel"></i>
@@ -174,7 +174,7 @@ while($res = mysqli_fetch_array($result))
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default">
+          <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle">
@@ -183,32 +183,26 @@ while($res = mysqli_fetch_array($result))
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" >Developer Panel</a>
+                    <a class="navbar-brand" href="#">Customer Panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
+                                   
+                                    <p class="notification"></p>
+									<p>Settings</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                
+                                <li><a href="ChangePassword.php">Change Password</a></li>
+                                <li><a href="CustomerViewMessageResponse.php">View Communication Tickets</a></li>
+                               
                               </ul>
                         </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
+						
                     </ul>
 
                 </div>
@@ -233,39 +227,35 @@ while($res = mysqli_fetch_array($result))
         <table border="0">
             <tr> 
                 <td>Date</td>
-                <td><input type="text" name="Date" maxlength="20" value="<?php echo $Date;?>"></td>
+                <td><input  class="form-control" type="text" name="Date" maxlength="20" value="<?php echo $Date;?>"></td>
             </tr>
             <tr> 
                 <td>Customer Name </td>
-                <td><input type="text" name="CustName" maxlength="10" value="<?php echo $CustName;?>"></td>
+                <td><input type="text"  class="form-control" name="CustName" maxlength="10" value="<?php echo $CustName;?>"></td>
             </tr>
             <tr> 
                 <td>Customer ID</td>
-                <td><input type="text" name="Customerid" maxlength="3" value="<?php echo $Customerid;?>"></td>
+                <td><input type="text"  class="form-control" name="Customerid" maxlength="3" value="<?php echo $Customerid;?>"></td>
             </tr>
              <tr> 
                 <td>Items</td>
-                <td><input type="text" name="Items" value="<?php echo $Items;?>"></td>
+                <td><input type="text"  class="form-control" name="Items" value="<?php echo $Items;?>"></td>
             </tr>
             <tr> 
                 <td>Quantity</td>
-                <td><input type="text" name="Quantity" maxlength="20" value="<?php echo $Quantity;?>"></td>
+                <td><input type="text"  class="form-control" name="Quantity" maxlength="20" value="<?php echo $Quantity;?>"></td>
             </tr>
             <tr> 
                 <td>SubTotal</td>
-                <td><input type="text" name="SubTotal" maxlength="20" value="<?php echo $SubTotal;?>"></td>
+                <td><input type="text"  class="form-control" name="SubTotal" maxlength="20" value="<?php echo $SubTotal;?>"></td>
             </tr>
             <tr> 
                 <td>Price</td>
-                <td><input type="text" name="Price" maxlength="20" value="<?php echo $Price;?>"></td>
-            </tr>
-            <tr> 
-                <td>Amount Paid</td>
-                <td><input type="text" name="AmountPaid" maxlength="20" value="<?php echo $AmountPaid;?>"></td>
+                <td><input type="text"  class="form-control" name="Price" maxlength="20" value="<?php echo $Price;?>"></td>
             </tr>
             <tr> 
                 <td>Amount Due</td>
-                <td><input type="text" name="AmountDue" maxlength="20" value="<?php echo $AmountDue;?>"></td>
+                <td><input type="text"  class="form-control" name="AmountDue" maxlength="20" value="<?php echo $AmountDue;?>"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>

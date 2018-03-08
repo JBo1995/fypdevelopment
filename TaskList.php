@@ -191,7 +191,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM todo WHERE Team = '".$_SESSION['l
         <tr bgcolor='white'>
             <strong><td>ID</td></strong>
            <strong> <td>Task</td></strong>
-            <strong><td>Customer ID</td></strong>
+            <strong><td>Customer</td></strong>
             
             
         </tr>
