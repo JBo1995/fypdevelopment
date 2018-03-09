@@ -244,7 +244,18 @@ echo "$num_rows \n";
                                     </div>
                                 </div>
                                 <div class="footer">
-                                    <hr />
+                                    <hr /><?php
+                                    //Code adapted from https://www.w3schools.com/sql/sql_count_avg_sum.asp
+                                    $query = "SELECT AVG(ResponseRating) FROM Incidents WHERE team = '".$_SESSION['login_team']."'";     
+                            $result = mysql_query($query);
+
+// Print out result
+while($row = mysql_fetch_array($result)) {
+echo "Your average response rating is " ;
+echo $row['AVG(ResponseRating)'] ; 
+echo " out of 5";
+}
+                                    ?>
                                     <div class="stats">
                                        
                                     </div>

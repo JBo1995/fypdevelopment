@@ -42,6 +42,7 @@ if(isset($_POST['Submit'])) {
 //end
 ?>
 <?php 
+//php sessions
 session_start();
 
 $login_session=$_SESSION['login_user'];
@@ -63,6 +64,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- https://www.w3schools.com/css/css_table.asp -->
      <style>table {
     table-layout:fixed;
    
@@ -76,7 +78,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM Incidents WHERE team = '".$_SESSI
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Dashboard by Creative Tim</title>
+	<title>DevLink</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />

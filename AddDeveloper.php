@@ -185,18 +185,18 @@ $login_sessionteam=$_SESSION['login_team'];
         <table class="table" width="100%" border="0">
             <tr> 
                 <td>Username</td>
-                <td><input type="text" name="username"  maxlength="20"></td>
+                <td><input type="text" class="form-control" name="username"  maxlength="20"></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input type="text" name="password" maxlength="10"></td>
+                <td><input type="text" class="form-control" name="password" maxlength="10"></td>
             </tr>
             <tr> 
                 <td>Team</td>
-                <td><input type="text" name="team" maxlength="10" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
+                <td><input type="text" class="form-control" name="team" maxlength="10" value="<?php echo $login_sessionteam; ?>" readonly="readonly"></td>
             </tr>
                 <td></td>
-                <td><input type="submit" name="Submit" value="Add"></td>
+                <td><input type="submit" class="btn btn-default" name="Submit" value="Add"></td>
             </tr>
         </table>
     </form>

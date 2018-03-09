@@ -292,23 +292,23 @@ document.getElementById('CustName').value = text;
             </tr>
              <tr> 
                 <td>Items</td>
-                <td><input type="text" class="form-control" name="Items"  id="Items" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Items"  id="Items" maxlength="30"></td>
             </tr>
              <tr> 
                 <td>Cost</td>
-                <td><input type="text" class="form-control" name="Quantity" id="Quantity" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Quantity" id="Quantity" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
              <tr> 
                 <td>Quantity</td>
-                <td><input type="text" class="form-control" name="Cost" id="Cost" maxlength="20" onblur="MyValidation()"></td>
+                <td><input type="text" class="form-control" name="Cost" id="Cost" maxlength="20" onblur="MyValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
             <tr> 
                 <td>SubTotal</td>
-                <td><input type="text" class="form-control" name="SubTotal" id="SubTotal" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="SubTotal" id="SubTotal" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
              <tr> 
                 <td>Price</td>
-                <td><input type="text" class="form-control" name="Price" id="Price" maxlength="20"></td>
+                <td><input type="text" class="form-control" name="Price" id="Price" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;"></td>
             </tr>
              
              <tr> 
@@ -323,21 +323,13 @@ document.getElementById('CustName').value = text;
                 <td>
                     
                 </td>
-                <td><input type="submit" name="Submit" value="Send"></td>
+                <td><input type="submit" class="btn btn-default" name="Submit" value="Send"></td>
             </tr>
         </table>
     </form>
     
     
-		      <script>
-		      function MyValidation(){
-             calculate();
-              calculate1();
-              calculate2();
-                calculate3();
-                calculate4();
-                }
-</script>		      
+		      
 		      
 		     <script> calculate = function()
 {
@@ -374,6 +366,13 @@ document.getElementById('CustName').value = text;
     document.getElementById('AmountDue').value = parseInt(resources) - parseInt(minutes);
      
    }</script>
+   <script> calculate5 = function()
+{
+    var resources = document.getElementById('Price').value;
+    var minutes = document.getElementById('AmountPaid').value; 
+    document.getElementById('SubTotal').value = parseInt(resources) - parseInt(minutes);
+     
+   }</script>
 
 <script>function copyValue() {
     var dropboxvalue = document.getElementById('mydropbox').value;
@@ -381,6 +380,17 @@ document.getElementById('CustName').value = text;
     var name = document.getElementById('mydropbox').value;
     document.getElementById('Name').value = name;
 }</script>
+
+<script>
+		      function MyValidation(){
+             calculate();
+              calculate1();
+              calculate2();
+                calculate3();
+                calculate4();
+                calculate5();
+                }
+</script>		      
 <!-- End modified componenet --> 
 
 

@@ -234,11 +234,12 @@ mysql_select_db("customersdb", $link);
                                
  
  
-   <table class="table table-striped" width='50%' border=0>
+   <table class="table table-striped" width='100%' border=0>
         <tr bgcolor='white'>
             <strong><td>Invoice ID</td></strong>
            <strong> <td>Customer ID</td></strong>
             <strong><td>Customer Name</td></strong>
+            
             
             
         </tr>
@@ -249,6 +250,7 @@ mysql_select_db("customersdb", $link);
             echo "<td>".$res['id']."</td>";
             echo "<td>".$res['Customerid']."</td>";
             echo "<td>".$res['CustName']."</td>";  
+             
             
             
              
