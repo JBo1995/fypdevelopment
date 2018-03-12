@@ -102,7 +102,7 @@ background:#3594D2;
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Paper Dashboard by Creative Tim</title>
+	<title>Customer Login</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -155,7 +155,7 @@ background:#3594D2;
 <?php
 if (isset($_POST['submit']))
 	{	  
-include("config2.php");
+include("config.php");
 
 session_start();
 
@@ -171,7 +171,7 @@ $_SESSION['login_userid']=$id;
 $_SESSION['login_user']=$CustName;
 
  
-$query = mysql_query("SELECT CustName FROM Customers WHERE CustName='$CustName' and TaskNum='$TaskNum'");
+$query = mysql_query("SELECT CustName FROM customers WHERE CustName='$CustName' and TaskNum='$TaskNum'");
 
  if (mysql_num_rows($query) != 0)
 {
