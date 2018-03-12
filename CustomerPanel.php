@@ -247,7 +247,7 @@ $num_rows1 = mysql_num_rows($result);
                                 </div>
                                 <script type="text/javascript">
                                 
-                       
+                       //Wkth help from https://www.w3schools.com/jsref/jsref_parseint.asp
                                 
                                 var bool = "<?php echo $num_rows ?>"; 
                                 var bool1 = "<?php echo $num_rows1 ?>"; 

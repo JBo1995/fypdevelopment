@@ -1,8 +1,6 @@
-mysql://b17b65ba76a357:bfe87dc1@eu-cdbr-west-02.cleardb.net/heroku_270227d55cb711a?reconnect=true
 
+
+mysql://b3962ea13e429c:b7500ce5@eu-cdbr-west-02.cleardb.net/heroku_23c2d875b54b1b3?reconnect=true
 eu-cdbr-west-02.cleardb.net
-
-b17b65ba76a357
-
-bfe87dc1
-
+b3962ea13e429c
+b7500ce5

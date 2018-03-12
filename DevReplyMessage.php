@@ -213,7 +213,7 @@ while($res = mysqli_fetch_array($result))
             </tr>
              <tr> 
                 <td>Message</td>
-                <td><input class="form-control" type="text" size="50%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
+                <td><input class="form-control" type="text" size="150%" readonly="readonly" name="Message" maxlength="20" value="<?php echo $Message;?>"></td>
             </tr>
             <tr> 
                 <td></td>

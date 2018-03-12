@@ -327,7 +327,7 @@ include_once("config.php");
  
 //fetching data in descending order (lastest entry first)
 //$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = mysqli_query($mysqli, "SELECT Task, Customer FROM todocomplete WHERE Team = '".$_SESSION['login_team']."'LIMIT 10"); // using mysqli_query instead
+$result = mysqli_query($mysqli, "SELECT Task, Customer FROM todocomplete WHERE Team = '".$_SESSION['login_team']."' ORDER BY id ASC LIMIT 10"); // using mysqli_query instead
 ?>
  
       
